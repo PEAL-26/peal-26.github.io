@@ -1,9 +1,9 @@
 import Header from '@/components/header'
 
-export default function Portfolio() {
+export default function Projectos() {
   return (
     <div>
-      <Header title="Portfólio" />
+      <Header title="Projectos" />
     </div>
   )
 }
