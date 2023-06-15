@@ -15,9 +15,7 @@ export default function Sidebar() {
 
   const isActiveLink = (href: string) => {
     // TODO: Remover /peal futuramente
-
-    console.log(pathname, `/peal/${href}`)
-    return pathname === `/peal/${href}` ? 'bg-gray/50 font-bold ' : ' hover:text-primary hover:bg-gray/30'
+    return pathname === `/peal${href}` ? 'bg-gray/50 font-bold ' : ' hover:text-primary hover:bg-gray/30'
   }
 
   const handleLinkClick = (href: string) => {
