@@ -25,7 +25,7 @@ export default function Sidebar() {
   return (
     <div className="flex h-full min-h-screen flex-col items-center  bg-black p-5 ">
       <div className="flex flex-col items-center gap-3">
-        <Image src="/peal-logo.png" alt="user" width={100} height={100} className="cursor-pointer rounded-full" />
+        <Image src="/peal/peal-logo.png" alt="user" width={100} height={100} className="cursor-pointer rounded-full" />
         <h1 className="max-w-[250px] text-center text-xl font-bold">Pedro Edilásio Araújo Lopes </h1>
       </div>
 
