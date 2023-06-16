@@ -9,10 +9,10 @@ module.exports = {
     extend: {
       colors: {
         primary: '#3A7935',
-        black: '#212121',
-        gray: '#303030',
-        white: '#D9D9D9',
-      }
+        black: { DEFAULT: '#212121' },
+        gray: { DEFAULT: '#303030' },
+        white: { DEFAULT: '#D9D9D9' },
+      },
     },
   },
   plugins: [],
