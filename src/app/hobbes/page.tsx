@@ -1,6 +1,6 @@
 import Header from '@/components/header'
 
-export default function Posts() {
+export default function Hobbes() {
   return (
     <div>
       <Header title="Hobbes" />
