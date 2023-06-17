@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { cookies } from 'next/headers'
 import { FaPlus } from 'react-icons/fa'
 
 import Header from '@/components/header'

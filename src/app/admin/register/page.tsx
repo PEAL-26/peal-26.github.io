@@ -1,5 +1,3 @@
-import { cookies } from 'next/headers'
-
 import Header from '@/components/header'
 import Avatar from '@/components/avatar'
 import Unauthenticated from '@/components/unauthenticated'
@@ -11,7 +9,7 @@ export const metadata = {
 }
 
 export default function Register() {
-   const isAuthenticated = cookies().has('token');
+  const isAuthenticated = true // cookies().has('token');
 
   return (
     <>
