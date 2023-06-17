@@ -17,8 +17,14 @@ export default function Sidebar() {
 
   const isActiveLink = (href: string) => {
     // TODO: Remover /peal futuramente
-    // return pathname === `/peal${href}` ? 'bg-gray/50 font-bold  text-primary' : ' hover:text-primary hover:bg-gray/30'
-    return pathname === `${href}` ? 'bg-gray/50 font-bold text-primary' : ' hover:text-primary hover:bg-gray/30'
+
+    return pathname === `/peal${href}`
+      ? 'bg-gray/50 font-bold text-primary'
+      : ' hover:text-primary hover:bg-gray/30'
+
+    // return pathname === `${href}`
+    //   ? 'bg-gray/50 font-bold text-primary'
+    //   : ' hover:text-primary hover:bg-gray/30'
   }
 
   const handleLinkClick = (href: string) => {
@@ -26,14 +32,22 @@ export default function Sidebar() {
   }
 
   return (
-    <div className="lef-0 fixed top-0 z-50 flex min-h-screen w-[290px] flex-col items-center  bg-black p-5 ">
+    <div className="lef-0 fixed top-0 z-50 hidden min-h-screen w-[290px] flex-col items-center bg-black  p-5 lg:flex ">
       <div className="flex flex-col items-center gap-3">
         {/* TODO Remover /peal depois */}
-        <Image src="/peal/peal-logo.png" alt="user" width={100} height={100} className="cursor-pointer rounded-full" />
-        <h1 className="max-w-[250px] text-center text-xl font-bold">Pedro Edilásio Araújo Lopes </h1>
+        <Image
+          src="/peal/peal-logo.png"
+          alt="user"
+          width={100}
+          height={100}
+          className="cursor-pointer rounded-full"
+        />
+        <h1 className="max-w-[250px] text-center text-2xl font-bold">
+          Pedro Edilásio Araújo Lopes{' '}
+        </h1>
       </div>
 
-      <div className="mt-3 flex gap-5">
+      <div className="mt-3 flex gap-5 overflow-y-auto">
         <a
           className="flex h-8 w-8 items-center justify-center rounded-full border transition-all hover:border-primary hover:bg-primary hover:text-white"
           href="https://facebook.com/peal26"

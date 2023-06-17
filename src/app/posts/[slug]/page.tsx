@@ -6,6 +6,10 @@ interface Props {
   params: { slug: string }
 }
 
+export async function generateMetadata({ params }: Props) {
+  return { title: params.slug }
+}
+
 export default function Posts({ params }: Props) {
   return (
     <div>

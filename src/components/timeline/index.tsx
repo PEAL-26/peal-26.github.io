@@ -18,16 +18,18 @@ export default function Timeline({ data, primeiro, ultimo }: Props) {
         } absolute -left-1.5 mt-1.5 h-3 w-3 rounded-full border border-white`}
       ></div>
       {/* February 2022 */}
-      <time className="mb-1  text-sm font-normal leading-none text-neutral-500">
+      <time className="mb-1 text-sm font-normal leading-none text-neutral-500">
         {data.date?.toDateString() ?? ''}
       </time>
-      <h3 className="text-lg font-bold text-white ">{data.title}</h3>
-      <p className="mb-4 text-base font-normal text-white/75">{data.resume}</p>
+      <h3 className="line-clamp-2 max-w-[768px] text-lg font-bold text-white">{data.title}</h3>
+      <p className="mb-4 line-clamp-6 max-w-[768px] text-base font-normal text-white/75">
+        {data.resume}
+      </p>
       <Link
         href={`/posts/${data.slug}`}
         className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-white focus:z-10  focus:outline-none "
       >
-        Saber mais <BsArrowRightShort size={20} />
+        Ver artigo completo <BsArrowRightShort size={20} />
       </Link>
     </li>
   )

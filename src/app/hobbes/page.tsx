@@ -1,5 +1,10 @@
 import Header from '@/components/header'
 
+export const metadata = {
+  title: 'Hobbes',
+  description: '',
+}
+
 export default function Hobbes() {
   return (
     <div>
