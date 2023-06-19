@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { cookies } from 'next/headers'
+// import { cookies } from 'next/headers'
 import { FaPlus } from 'react-icons/fa'
 
 import Header from '@/components/header'
@@ -14,8 +14,8 @@ export const metadata = {
 }
 
 export default function Admin() {
-  const cookieStore = cookies()
-  const isAuthenticated = cookieStore.has('token');
+  // const cookieStore = cookies()
+  const isAuthenticated = true //cookieStore.has('token');
 
   return (
     <>
