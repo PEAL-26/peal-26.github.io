@@ -1,10 +1,10 @@
 import Link from 'next/link'
 import { BsArrowRightShort } from 'react-icons/bs'
 
-import { PostsProps } from '@/@types/post-type'
+import { PostProps } from '@/@types/post-type'
 
 interface Props {
-  data: PostsProps
+  data: PostProps
   primeiro?: boolean
   ultimo?: boolean
 }
