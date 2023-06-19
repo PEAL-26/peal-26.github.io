@@ -1,12 +1,12 @@
 'use client'
 
+import useMediaQuery from '@/hooks/use-media-query'
 import { useEffect, useState, useCallback } from 'react'
-import useMediaQuery from 'use-media'
 
 import { FiMenu } from 'react-icons/fi'
 
 export default function ButtonMenu() {
-  const isDevice = useMediaQuery({ maxWidth: 768 })
+  const isDevice = useMediaQuery('(max-width: 768px)')
 
   const [open, setOpen] = useState(false)
 
