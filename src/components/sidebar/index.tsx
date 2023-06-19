@@ -1,9 +1,8 @@
 'use client'
 
-import { useRouter, usePathname } from 'next/navigation'
-
-import Image from 'next/image'
 import Link from 'next/link'
+import Image from 'next/image'
+import { useRouter, usePathname } from 'next/navigation'
 
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from 'react-icons/fa'
 import { AiFillInstagram } from 'react-icons/ai'
@@ -32,7 +31,7 @@ export default function Sidebar() {
   return (
     <div
       id="sidebar-menu"
-      className="top-0 z-50 hidden min-h-screen w-[290px] flex-col items-center bg-black p-5 transition-all lg:fixed lg:left-0 lg:flex"
+      className="absolute top-0 z-50 min-h-screen w-[290px] flex-col items-center bg-black p-5 transition-all lg:fixed lg:left-0 lg:flex lg:h-full"
     >
       <div className="flex flex-col items-center gap-3">
         {/* TODO Remover /peal depois */}

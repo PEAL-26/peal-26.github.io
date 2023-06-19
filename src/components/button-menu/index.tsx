@@ -1,9 +1,13 @@
 'use client'
 
 import { useEffect, useState, useCallback } from 'react'
+import useMediaQuery from 'use-media'
+
 import { FiMenu } from 'react-icons/fi'
 
 export default function ButtonMenu() {
+  const isDevice = useMediaQuery({ maxWidth: 768 })
+
   const [open, setOpen] = useState(false)
 
   const show = () => setOpen(true)
@@ -17,25 +21,30 @@ export default function ButtonMenu() {
 
   useEffect(() => {
     const menu = sidebarMenu()
+    const body = document.body
 
-    if (open && menu !== null) {
-      menu.classList.remove(
-        'hidden',
-        'fixed',
-        '-left-[290px]',
-        'min-h-screen',
-        '-translate-x-[290px]',
-      )
-      menu.classList.add('absolute', 'h-full', 'left-0', 'translate-x-0')
-      document.body.classList.add('relative')
-
-      return
+    const openMenuClasses = {
+      show: ['h-full', 'left-0', 'translate-x-0'],
+      hide: ['hidden', '-left-[290px]', 'min-h-screen', '-translate-x-[290px]'],
     }
 
-    menu?.classList.add('hidden', 'fixed', 'min-h-screen', '-left-[290px]', '-translate-x-[290px]')
-    menu?.classList.remove('absolute', 'h-full', 'left-0', 'translate-x-0')
-    document?.body.classList.remove('relative')
-  }, [open, sidebarMenu])
+    if (isDevice) {
+      if (open && menu !== null) {
+        menu.classList.add(...openMenuClasses.show)
+        body.classList.add('relative')
+      } else {
+        menu?.classList.add(...openMenuClasses.hide)
+        menu?.classList.remove(...openMenuClasses.show)
+        body.classList.remove('relative')
+      }
+    }
+
+    return () => {
+      menu?.classList.remove(...openMenuClasses.show)
+      menu?.classList.remove(...openMenuClasses.hide)
+      body.classList.remove('relative')
+    }
+  }, [open, sidebarMenu, isDevice])
 
   return (
     <>
