@@ -1,45 +1,44 @@
-import { getAuth, signInWithPopup, GithubAuthProvider } from 'firebase/auth'
+import { signInWithPopup, GithubAuthProvider } from 'firebase/auth'
 
-import { /*auth,*/ app } from '@/libs/firebase'
+import { auth } from '@/libs/firebase'
 
-console.log(app.name)
 export default function ButtonLoginGithub() {
-  // const handleLogin = () => {
-  //   const provider = new GithubAuthProvider()
-  //   provider.setCustomParameters({
-  //     allow_signup: 'false',
-  //   })
+  const handleLogin = () => {
+    const provider = new GithubAuthProvider()
+    provider.setCustomParameters({
+      allow_signup: 'false',
+    })
 
-  //   signInWithPopup(auth, provider)
-  //     .then((result) => {
-  //       // This gives you a GitHub Access Token. You can use it to access the GitHub API.
-  //       const credential = GithubAuthProvider.credentialFromResult(result)
-  //       const token = credential?.accessToken
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a GitHub Access Token. You can use it to access the GitHub API.
+        const credential = GithubAuthProvider.credentialFromResult(result)
+        const token = credential?.accessToken
 
-  //       // The signed-in user info.
-  //       const user = result.user
-  //       // IdP data available using getAdditionalUserInfo(result)
-  //       // ...
+        // The signed-in user info.
+        const user = result.user
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
 
-  //       console.log(JSON.stringify({ token, result }, null, 5))
-  //     })
-  //     .catch((error) => {
-  //       // Handle Errors here.
-  //       const errorCode = error.code
-  //       const errorMessage = error.message
-  //       // The email of the user's account used.
-  //       const email = error.customData.email
-  //       // The AuthCredential type that was used.
-  //       const credential = GithubAuthProvider.credentialFromError(error)
-  //       // ...
-  //     })
-  // }
+        console.log(JSON.stringify({ token, result }, null, 5))
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code
+        const errorMessage = error.message
+        // The email of the user's account used.
+        const email = error.customData.email
+        // The AuthCredential type that was used.
+        const credential = GithubAuthProvider.credentialFromError(error)
+        // ...
+      })
+  }
 
   return (
     <button
       type="button"
       className="mb-2 mr-2 inline-flex items-center rounded-lg bg-[#24292F] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#24292F]/90 focus:outline-none focus:ring-4 focus:ring-[#24292F]/50 dark:hover:bg-[#050708]/30 dark:focus:ring-gray-500"
-      // onClick={handleLogin}
+      onClick={handleLogin}
     >
       <svg
         className="-ml-1 mr-2 h-4 w-4"

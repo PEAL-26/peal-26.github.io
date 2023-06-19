@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { BsArrowRightShort } from 'react-icons/bs'
 
-import { PostsProps } from '@/@types/posts-type'
+import { PostsProps } from '@/@types/post-type'
 
 interface Props {
   data: PostsProps
@@ -29,7 +29,7 @@ export default function Timeline({ data, primeiro, ultimo }: Props) {
         href={`/posts/${data.slug}`}
         className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-white focus:z-10  focus:outline-none "
       >
-        Ver artigo completo <BsArrowRightShort size={20} />
+        Ler artigo<BsArrowRightShort size={20} />
       </Link>
     </li>
   )

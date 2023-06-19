@@ -3,10 +3,10 @@
 import { useState } from 'react'
 
 import Timeline from '../timeline'
-import { PostsProps } from '@/@types/posts-type'
+import { PostProps } from '@/@types/post-type'
 
 export default function ListPostsTimeline() {
-  const [posts, setPosts] = useState<PostsProps[]>([
+  const [posts, setPosts] = useState<PostProps[]>([
     {
       id: '1',
       title: 'Task Timer',

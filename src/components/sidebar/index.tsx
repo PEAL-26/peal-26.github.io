@@ -9,8 +9,6 @@ import { FaFacebookF, FaTwitter, FaLinkedinIn } from 'react-icons/fa'
 import { AiFillInstagram } from 'react-icons/ai'
 import { FiGithub } from 'react-icons/fi'
 
-import { Lightbox } from 'react-modal-image'
-
 export default function Sidebar() {
   const router = useRouter()
   const pathname = usePathname()
@@ -32,16 +30,21 @@ export default function Sidebar() {
   }
 
   return (
-    <div className="lef-0 fixed top-0 z-50 hidden min-h-screen w-[290px] flex-col items-center bg-black  p-5 lg:flex ">
+    <div
+      id="sidebar-menu"
+      className="top-0 z-50 hidden min-h-screen w-[290px] flex-col items-center bg-black p-5 transition-all lg:fixed lg:left-0 lg:flex"
+    >
       <div className="flex flex-col items-center gap-3">
         {/* TODO Remover /peal depois */}
-        <Image
-          src="/peal/peal-logo.png"
-          alt="user"
-          width={100}
-          height={100}
-          className="cursor-pointer rounded-full"
-        />
+        <Link href="/">
+          <Image
+            src="/peal/peal-logo.png"
+            alt="user"
+            width={100}
+            height={100}
+            className="cursor-pointer rounded-full"
+          />
+        </Link>
         <h1 className="max-w-[250px] text-center text-2xl font-bold">
           Pedro Edilásio Araújo Lopes{' '}
         </h1>
