@@ -13,15 +13,9 @@ export default function Sidebar() {
   const pathname = usePathname()
 
   const isActiveLink = (href: string) => {
-    // TODO: Remover /peal futuramente
-
-    return pathname === `/peal${href}`
+    return pathname === `${href}`
       ? 'bg-gray/50 font-bold text-primary'
       : ' hover:text-primary hover:bg-gray/30'
-
-    // return pathname === `${href}`
-    //   ? 'bg-gray/50 font-bold text-primary'
-    //   : ' hover:text-primary hover:bg-gray/30'
   }
 
   const handleLinkClick = (href: string) => {
@@ -34,10 +28,9 @@ export default function Sidebar() {
       className="absolute top-0 z-50 min-h-screen w-[290px] flex-col items-center bg-black p-5 transition-all lg:fixed lg:left-0 lg:flex lg:h-full"
     >
       <div className="flex flex-col items-center gap-3">
-        {/* TODO Remover /peal depois */}
         <Link href="/">
           <Image
-            src="/peal/peal-logo.png"
+            src="/peal-logo.png"
             alt="user"
             width={100}
             height={100}
