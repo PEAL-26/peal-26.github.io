@@ -9,10 +9,7 @@ export default function Biografia() {
   return (
     <div>
       <Header title="Biografia" />
-      {/* <div className="py-5 ">
-        <div>jvvnvn</div> */}
       <BiografiaComponent />
-      {/* </div> */}
     </div>
   )
 }

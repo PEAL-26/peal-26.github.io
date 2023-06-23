@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import Post from '../post'
 import { PostProps } from '@/@types/post-type'
@@ -10,32 +10,36 @@ interface Props {
 }
 
 export default function ListPostsHome(props: Props) {
-  const [lastPosts, setLastPosts] = useState<PostProps[]>([
-    {
-      id: '1',
-      slug: 'blbla',
-      title: 'blabla',
-      date: new Date(),
-      resume:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec maximus justo. Aliquam vitae tristique ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    },
-    {
-      id: '2',
-      slug: 'blbla',
-      title: 'blabla',
-      date: new Date(),
-      resume:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec maximus justo. Aliquam vitae tristique ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    },
-    {
-      id: '3',
-      slug: 'blbla',
-      title: 'blabla',
-      date: new Date(),
-      resume:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec maximus justo. Aliquam vitae tristique ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    },
-  ])
+  const [lastPosts, setLastPosts] = useState<PostProps[]>([])
+
+  useEffect(() => {
+    setLastPosts([
+      {
+        id: '1',
+        slug: 'blbla',
+        title: 'blabla',
+        date: new Date(),
+        resume:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec maximus justo. Aliquam vitae tristique ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      },
+      {
+        id: '2',
+        slug: 'blbla',
+        title: 'blabla',
+        date: new Date(),
+        resume:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec maximus justo. Aliquam vitae tristique ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      },
+      {
+        id: '3',
+        slug: 'blbla',
+        title: 'blabla',
+        date: new Date(),
+        resume:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec maximus justo. Aliquam vitae tristique ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      },
+    ])
+  }, [lastPosts])
 
   return (
     <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">

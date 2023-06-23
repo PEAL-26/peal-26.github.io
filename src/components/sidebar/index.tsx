@@ -43,41 +43,41 @@ export default function Sidebar() {
       </div>
 
       <div className="mt-3 flex gap-5 overflow-y-auto">
-        <a
+        <Link
           className="flex h-8 w-8 items-center justify-center rounded-full border transition-all hover:border-primary hover:bg-primary hover:text-white"
           href="https://facebook.com/peal26"
           target="_blank"
         >
           <FaFacebookF />
-        </a>
-        <a
+        </Link>
+        <Link
           className="flex h-8 w-8 items-center justify-center rounded-full border transition-all hover:border-primary hover:bg-primary hover:text-white"
           href="https://instagram.com/peal_26"
           target="_blank"
         >
           <AiFillInstagram />
-        </a>
-        <a
+        </Link>
+        <Link
           className="flex h-8 w-8 items-center justify-center rounded-full border transition-all hover:border-primary hover:bg-primary hover:text-white"
           href="https://twitter.com/peal_26"
           target="_blank"
         >
           <FaTwitter />
-        </a>
-        <a
+        </Link>
+        <Link
           className="flex h-8 w-8 items-center justify-center rounded-full border transition-all hover:border-primary hover:bg-primary hover:text-white"
           href="https://linkedin.com/in/peal26"
           target="_blank"
         >
           <FaLinkedinIn />
-        </a>
-        <a
+        </Link>
+        <Link
           className="flex h-8 w-8 items-center justify-center rounded-full border transition-all hover:border-primary hover:bg-primary hover:text-white"
           href="https://github.com/peal-26"
           target="_blank"
         >
           <FiGithub className="fill-current" />
-        </a>
+        </Link>
       </div>
 
       <ul className="mt-8 w-full">
