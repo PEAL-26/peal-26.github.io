@@ -7,9 +7,9 @@ export const metadata = {
 }
 export default function Biografia() {
   return (
-    <div>
+    <>
       <Header title="Biografia" />
       <BiografiaComponent />
-    </div>
+    </>
   )
 }

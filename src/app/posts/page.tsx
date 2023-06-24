@@ -8,9 +8,9 @@ export const metadata = {
 
 export default function Posts() {
   return (
-    <div>
+    <>
       <Header title="Posts" />
       <ListPostsTimeline />
-    </div>
+    </>
   )
 }

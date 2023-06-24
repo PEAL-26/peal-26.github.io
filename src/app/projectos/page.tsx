@@ -8,9 +8,9 @@ export const metadata = {
 
 export default function Projectos() {
   return (
-    <div>
+    <>
       <Header title="Projectos" />
       <ListProjects />
-    </div>
+    </>
   )
 }

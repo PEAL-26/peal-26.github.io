@@ -17,9 +17,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="pt-pt">
       <body className={`${roboto.className} flex flex-1`}>
         <Sidebar />
-        <div className="ml-0 flex-1 p-7 lg:ml-[290px] transition-all">
+        <div className="ml-0 flex-1 p-7 transition-all lg:ml-[290px]">
           <ButtonMenu />
-          <div className="min-h-screen flex-1">{children}</div>
+          <div className="flex flex-col min-h-screen flex-1">{children}</div>
           <Footer />
         </div>
       </body>

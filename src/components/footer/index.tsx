@@ -4,7 +4,7 @@ export default function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <div className="mt-7 flex w-full flex-col-reverse items-center rounded-md bg-black p-4  lg:flex-row lg:justify-between">
+    <div className="flex w-full flex-col-reverse items-center rounded-md bg-black p-4  lg:flex-row lg:justify-between">
       <span className="mt-4 text-center text-xs lg:mt-0">{`© ${year} PEAL. Todos os direitos reservados.`}</span>
       <div className="flex gap-3">
         <Link className="text-xs" href="/biografia">

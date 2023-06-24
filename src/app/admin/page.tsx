@@ -30,6 +30,8 @@ export default function Admin() {
         {isAuthenticated ? <Avatar /> : <ButtonLoginGithub />}
       </Header>
 
+      <div>
+
       {isAuthenticated ? (
         <>
           <Link
@@ -44,6 +46,7 @@ export default function Admin() {
       ) : (
         <Unauthenticated />
       )}
+        </div>
     </>
   )
 }

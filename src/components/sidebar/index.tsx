@@ -27,6 +27,7 @@ export default function Sidebar() {
       id="sidebar-menu"
       className="absolute top-0 z-50 min-h-screen w-[290px] flex-col items-center bg-black p-5 transition-all lg:fixed lg:left-0 lg:flex lg:h-full"
     >
+      {/* Avatar */}
       <div className="flex flex-col items-center gap-3">
         <Link href="/">
           <Image
@@ -42,7 +43,8 @@ export default function Sidebar() {
         </h1>
       </div>
 
-      <div className="mt-3 flex gap-5 overflow-y-auto">
+      {/* Redes Sociais */}
+      <div className="mt-3 flex gap-5">
         <Link
           className="flex h-8 w-8 items-center justify-center rounded-full border transition-all hover:border-primary hover:bg-primary hover:text-white"
           href="https://facebook.com/peal26"
@@ -80,7 +82,8 @@ export default function Sidebar() {
         </Link>
       </div>
 
-      <ul className="mt-8 w-full">
+      {/* Menus Links */}
+      <ul className="mt-8 w-full overflow-y-auto">
         <li
           className={`cursor-pointer rounded-md px-3 py-4 text-xl ${isActiveLink('/biografia')}`}
           onClick={() => handleLinkClick('/biografia')}

@@ -7,10 +7,10 @@ export const metadata = {
 
 export default function Hobbes() {
   return (
-    <div>
+    <>
       <Header title="Hobbes" />
 
-      <div className="p-5"></div>
-    </div>
+      <div className="my-5 px-5"></div>
+    </>
   )
 }
