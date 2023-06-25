@@ -1,5 +1,5 @@
 # PEAL | TODO
 
-[ ] Ancora para o topo da página
+[x] Ancora para o topo da página
 [ ] SEO Google
-[ ]  
+[ ]

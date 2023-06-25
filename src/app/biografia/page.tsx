@@ -1,5 +1,6 @@
-import BiografiaComponent from '@/components/biografia-component'
 import Header from '@/components/header'
+import BiografiaComponent from '@/components/biografia-component'
+import ScrollToTopButton from '@/components/scroll-to-top-button'
 
 export const metadata = {
   title: 'Biografia',
@@ -10,6 +11,7 @@ export default function Biografia() {
     <>
       <Header title="Biografia" />
       <BiografiaComponent />
+      <ScrollToTopButton />
     </>
   )
 }

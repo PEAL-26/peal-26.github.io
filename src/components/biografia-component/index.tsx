@@ -19,8 +19,6 @@ export default function BiografiaComponent() {
   const sectionRefs = setListSectionsRefs(CAPITULOS.length)
   const { isSticked, refSticker } = useSticked()
 
-  console.log(sectionRefs)
-
   return (
     <div className="flex flex-1 py-7">
       {/* Scrollspy */}

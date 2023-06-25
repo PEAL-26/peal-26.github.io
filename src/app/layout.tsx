@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Sidebar />
         <div className="ml-0 flex-1 p-7 transition-all lg:ml-[290px]">
           <ButtonMenu />
-          <div className="flex flex-col min-h-screen flex-1">{children}</div>
+          <div className="flex min-h-screen flex-1 flex-col">{children}</div>
           <Footer />
         </div>
       </body>
