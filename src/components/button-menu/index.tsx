@@ -6,7 +6,7 @@ import { useEffect, useState, useCallback } from 'react'
 import { FiMenu } from 'react-icons/fi'
 
 export default function ButtonMenu() {
-  const isDevice = useMediaQuery('(max-width: 1024px)')
+  const isDevice = useMediaQuery('(max-width: 1023px)')
 
   const [open, setOpen] = useState(false)
 
