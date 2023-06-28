@@ -40,7 +40,7 @@ export default function ListPostsTimeline() {
     },
   ])
   return (
-    <div className="my-5 px-5">
+    <div className="my-7 px-5">
       <ol className="relative border-l border-gray-200">
         {posts.map((data, index) => (
           <Timeline

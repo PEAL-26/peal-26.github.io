@@ -1,51 +1,43 @@
 'use client'
-
 import { useEffect, useState } from 'react'
 
 import Post from '../post'
+import Empty from '../empty'
+import Loading from '../loading'
+
 import { PostProps } from '@/@types/post-type'
+import { getLastThree, getById } from '@/data/posts'
 
 interface Props {
   className?: string
 }
 
 export default function ListPostsHome(props: Props) {
+  const [loading, setLoading] = useState(false)
   const [lastPosts, setLastPosts] = useState<PostProps[]>([])
 
   useEffect(() => {
-    setLastPosts([
-      {
-        id: '1',
-        slug: 'blbla',
-        title: 'blabla',
-        date: new Date(),
-        resume:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec maximus justo. Aliquam vitae tristique ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      },
-      {
-        id: '2',
-        slug: 'blbla',
-        title: 'blabla',
-        date: new Date(),
-        resume:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec maximus justo. Aliquam vitae tristique ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      },
-      {
-        id: '3',
-        slug: 'blbla',
-        title: 'blabla',
-        date: new Date(),
-        resume:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec maximus justo. Aliquam vitae tristique ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      },
-    ])
-  }, [lastPosts])
+    ;(async () => {
+      setLoading(true)
 
-  return (
-    <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-      {lastPosts.map((data, index) => (
-        <Post key={data.id} data={data} />
-      ))}
-    </div>
-  )
+      const posts = await getLastThree()
+      
+      setLastPosts(posts)
+      setLoading(false)
+    })()
+  }, [])
+
+  if (loading) return <Loading />
+
+  if (lastPosts.length > 0) {
+    return (
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+        {lastPosts.map((data, index) => (
+          <Post key={data.id} data={data} />
+        ))}
+      </div>
+    )
+  }
+
+  return <Empty />
 }

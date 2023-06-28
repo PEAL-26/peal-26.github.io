@@ -20,7 +20,7 @@ export default function BiografiaComponent() {
   const { isSticked, refSticker } = useSticked()
 
   return (
-    <div className="flex flex-1 py-7">
+    <div className="flex flex-1 my-7">
       {/* Scrollspy */}
       <Scrollspy sectionRefs={sectionRefs}>
         {({ currentElementIndexInViewport }) => (

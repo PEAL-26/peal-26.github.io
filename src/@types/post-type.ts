@@ -1,5 +1,5 @@
 export type PostProps = {
-  id: string
+  id?: string
   title: string
   slug: string
   resume?: string
