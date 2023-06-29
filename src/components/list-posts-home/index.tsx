@@ -13,7 +13,7 @@ interface Props {
 }
 
 export default function ListPostsHome(props: Props) {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [lastPosts, setLastPosts] = useState<PostProps[]>([])
 
   useEffect(() => {
@@ -21,23 +21,20 @@ export default function ListPostsHome(props: Props) {
       setLoading(true)
 
       const posts = await getLastThree()
-      
+
       setLastPosts(posts)
       setLoading(false)
     })()
   }, [])
 
-  if (loading) return <Loading />
+  if (loading) return <Loading height="min-h-full" />
+  if (lastPosts.length === 0) return <Empty height="h-full" margin="my-0" />
 
-  if (lastPosts.length > 0) {
-    return (
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-        {lastPosts.map((data, index) => (
-          <Post key={data.id} data={data} />
-        ))}
-      </div>
-    )
-  }
-
-  return <Empty />
+  return (
+    <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+      {lastPosts.map((data, index) => (
+        <Post key={data.id} data={data} />
+      ))}
+    </div>
+  )
 }
