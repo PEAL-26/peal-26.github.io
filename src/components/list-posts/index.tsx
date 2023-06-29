@@ -4,90 +4,20 @@ interface Props {
 
 export default function ListPosts(props: Props) {
   return (
-    <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
-      <div>
-        <img
-          className="h-auto max-w-full rounded-lg"
-          src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image.jpg"
-          alt=""
-        />
-      </div>
-      <div>
-        <img
-          className="h-auto max-w-full rounded-lg"
-          src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg"
-          alt=""
-        />
-      </div>
-      <div>
-        <img
-          className="h-auto max-w-full rounded-lg"
-          src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg"
-          alt=""
-        />
-      </div>
-      <div>
-        <img
-          className="h-auto max-w-full rounded-lg"
-          src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg"
-          alt=""
-        />
-      </div>
-      <div>
-        <img
-          className="h-auto max-w-full rounded-lg"
-          src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg"
-          alt=""
-        />
-      </div>
-      <div>
-        <img
-          className="h-auto max-w-full rounded-lg"
-          src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg"
-          alt=""
-        />
-      </div>
-      <div>
-        <img
-          className="h-auto max-w-full rounded-lg"
-          src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-6.jpg"
-          alt=""
-        />
-      </div>
-      <div>
-        <img
-          className="h-auto max-w-full rounded-lg"
-          src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-7.jpg"
-          alt=""
-        />
-      </div>
-      <div>
-        <img
-          className="h-auto max-w-full rounded-lg"
-          src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-8.jpg"
-          alt=""
-        />
-      </div>
-      <div>
-        <img
-          className="h-auto max-w-full rounded-lg"
-          src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-9.jpg"
-          alt=""
-        />
-      </div>
-      <div>
-        <img
-          className="h-auto max-w-full rounded-lg"
-          src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-10.jpg"
-          alt=""
-        />
-      </div>
-      <div>
-        <img
-          className="h-auto max-w-full rounded-lg"
-          src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-11.jpg"
-          alt=""
-        />
+    <div className="flex w-full flex-col gap-2">
+      <div className="flex cursor-pointer items-center justify-between rounded-md border border-white/10 bg-black px-3 py-4 hover:bg-black/50">
+        {/* Content */}
+        <div className="flex flex-col">
+          <time className="mb-1 text-xs font-normal leading-none text-neutral-500">
+            {new Date().toString()}
+          </time>
+          <h3 className="mb-4 text-lg font-bold text-white">Titulo da postagem</h3>
+
+          <p className="line-clamp-3 font-normal text-white/75">Content</p>
+        </div>
+
+        {/* Botões */}
+        <div>Botões : alterar | remover</div>
       </div>
     </div>
   )

@@ -1,20 +1,33 @@
 import Header from '@/components/header'
+import NotFound from '@/components/not-found'
+
+import { getBySlug } from '@/data/posts'
 
 interface Props {
   params: { slug: string }
 }
 
-export async function generateMetadata({ params }: Props) {
-  return { title: params.slug }
+// export async function generateMetadata({ params }: Props) {
+//   return { title: params.slug }
+// }
+
+async function getPost(slug: string) {
+  const post = await getBySlug(slug)
+
+  return post
 }
 
-export default function Posts({ params }: Props) {
+export default async function PostDetails({ params }: Props) {
+  const post = await getBySlug(params.slug)
+
+  if (!post) return <NotFound />
+
   return (
     <div>
       <time className="mb-1 text-sm font-normal leading-none text-neutral-500">
-        Janeiro de 2023
+        {post?.date?.toString()}
       </time>
-      <Header urlBtnBack="/posts" title={params.slug} />
+      <Header backButton title={post?.title} />
     </div>
   )
 }

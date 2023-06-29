@@ -38,6 +38,25 @@ export async function getById(id: string): Promise<PostProps | null> {
   return null
 }
 
+export async function getBySlug(slug: string): Promise<PostProps | null> {
+  const q = query(collection(db(), 'posts'), where('slug', '==', slug))
+  const querySnapshot = await getDocs(q)
+
+  if (querySnapshot.size === 0) return null
+
+  const docSnapshot = querySnapshot.docs[0]
+  const { title, resume, date, file } = docSnapshot.data()
+
+  return {
+    id: docSnapshot.id,
+    title,
+    slug,
+    resume,
+    date: firebaseTimestampToDate(date),
+    file,
+  }
+}
+
 export async function getAll(): Promise<PostProps[]> {
   const posts: PostProps[] = []
   const postsCollection = collection(db(), 'posts')

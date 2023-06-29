@@ -1,6 +1,6 @@
 'use client'
 
-import { usePathname } from 'next/navigation'
+import { usePathname, useParams } from 'next/navigation'
 import { redirect } from 'next/navigation'
 
 const TITLES = [
@@ -11,15 +11,32 @@ const TITLES = [
   { name: 'Feedbacks', href: '/admin/feedbacks' },
 ]
 
+const getTitle = (pathname: string, id: string) => {
+  const title = TITLES.find((value) => value.href === pathname)?.name
+
+  if (id) {
+    if (pathname.startsWith('/admin/posts/register')) {
+      return 'Alterar post'
+    }
+
+    if (pathname.startsWith('/admin/projectos/register')) {
+      return 'Alterar projecto'
+    }
+  }
+
+  return title
+}
+
 export default function HeaderAdminTitle() {
   const pathname = usePathname()
-  if (pathname === '/admin') redirect('/admin/posts')
+  const { id } = useParams()
 
-  const title = TITLES.find((value) => value.href === pathname)
+  if (pathname === '/admin') redirect('/admin/posts')
+  let title = getTitle(pathname, id)
 
   return (
     <div className="flex flex-col ">
-      Admin<span className="text-xs text-neutral-500">{title?.name}</span>
+      Admin<span className="text-xs text-neutral-500">{title}</span>
     </div>
   )
 }

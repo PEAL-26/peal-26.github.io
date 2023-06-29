@@ -1,8 +1,8 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { BsArrowRightShort } from 'react-icons/bs'
 
 import { ProjectoProps } from '@/@types/projecto-type'
-import Image from 'next/image'
 
 interface Props {
   data: ProjectoProps
