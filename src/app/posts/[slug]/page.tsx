@@ -1,7 +1,7 @@
 import Header from '@/components/header'
 import NotFound from '@/components/not-found'
 
-import { getBySlug } from '@/data/posts'
+import { getBySlug, getAll } from '@/data/posts'
 
 interface Props {
   params: { slug: string }
@@ -11,11 +11,11 @@ interface Props {
 //   return { title: params.slug }
 // }
 
-async function getPost(slug: string) {
-  const post = await getBySlug(slug)
+// async function getPost(slug: string) {
+//   const post = await getBySlug(slug)
 
-  return post
-}
+//   return post
+// }
 
 export default async function PostDetails({ params }: Props) {
   const post = await getBySlug(params.slug)
@@ -30,4 +30,12 @@ export default async function PostDetails({ params }: Props) {
       <Header backButton title={post?.title} />
     </div>
   )
+}
+
+export async function generateStaticParams() {
+  const posts = await getAll()
+
+  return posts.map((post) => ({
+    slug: post.slug,
+  }))
 }

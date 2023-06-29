@@ -12,6 +12,8 @@ export const metadata = {
   description: '',
 }
 
+export const dynamicParams = true
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-pt">
