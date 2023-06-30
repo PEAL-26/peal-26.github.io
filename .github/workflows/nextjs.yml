@@ -25,14 +25,17 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # pass-secrets-to-workflow
+  pass_secrets:
+    uses: ./.github/workflows/nextjs.yml
+    secrets: inherit
+
   # Build job
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Set Environment
-        secrets:
-          NEXT_PUBLIC_FIREBASE_API_KEY: blabla
-        run: echo $NEXT_PUBLIC_FIREBASE_API_KEY
+        run: echo ${{secrets.NEXT_PUBLIC_FIREBASE_API_KEY}}
       - name: Checkout
         uses: actions/checkout@v3
       - name: Detect package manager
