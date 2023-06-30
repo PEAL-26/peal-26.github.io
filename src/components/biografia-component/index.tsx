@@ -9,18 +9,16 @@ import ScrollspyMenu from '../scrollspy-menu'
 import useSticked from '@/hooks/use-sticked'
 
 import { CAPITULOS } from './data'
-
-const setListSectionsRefs = (length: number) =>
-  Array.from({ length }, () => useRef<HTMLDivElement>(null))
+import { setListRefs } from '@/helpers/refs'
 
 const PRIMEIRO_ELEMENTO = 0
 
 export default function BiografiaComponent() {
-  const sectionRefs = setListSectionsRefs(CAPITULOS.length)
+  const sectionRefs = setListRefs<HTMLDivElement>(CAPITULOS.length)
   const { isSticked, refSticker } = useSticked()
 
   return (
-    <div className="flex flex-1 my-7">
+    <div className="my-7 flex flex-1">
       {/* Scrollspy */}
       <Scrollspy sectionRefs={sectionRefs}>
         {({ currentElementIndexInViewport }) => (

@@ -6,10 +6,13 @@
         "efectuar",
         "Expiracao",
         "Firestore",
+        "Formulario",
         "Projecto",
         "projectos",
+        "Reaccao",
         "RECAPTCHA",
         "Scrollspy",
-        "signup"
+        "signup",
+        "tippyjs"
     ]
 }
