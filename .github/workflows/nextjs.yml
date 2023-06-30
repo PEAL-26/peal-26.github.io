@@ -25,15 +25,14 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # pass-secrets-to-workflow
-  pass-secrets:
-    uses: peal-26/peal-26.github.io/.github/workflows/nextjs.yml@main
-    secrets: inherit
-
   # Build job
   build:
     runs-on: ubuntu-latest
     steps:
+      # pass-secrets-to-workflow
+      - name: Pass Secrets To Workflow
+        uses: ./.github/workflows/nextjs.yml@main
+
       - name: Set Environment
         run: echo ${{secrets.NEXT_PUBLIC_FIREBASE_API_KEY}}
       - name: Checkout
