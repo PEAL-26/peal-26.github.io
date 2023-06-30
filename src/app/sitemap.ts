@@ -19,7 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
     },
     {
-      url: 'https://peal-26.github.io/hobbes',
+      url: 'https://peal-26.github.io/hobbies',
       lastModified: new Date(),
     },
   ]

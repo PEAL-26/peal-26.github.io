@@ -103,10 +103,10 @@ export default function Sidebar() {
           <Link href="/posts">Posts</Link>
         </li>
         <li
-          className={`cursor-pointer rounded-md px-3 py-4 text-xl ${isActiveLink('/hobbes')}`}
-          onClick={() => handleLinkClick('/hobbes')}
+          className={`cursor-pointer rounded-md px-3 py-4 text-xl ${isActiveLink('/hobbies')}`}
+          onClick={() => handleLinkClick('/hobbies')}
         >
-          <Link href="/hobbes">Hobbes</Link>
+          <Link href="/hobbies">Hobbies</Link>
         </li>
       </ul>
     </div>

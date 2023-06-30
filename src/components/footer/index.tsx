@@ -26,8 +26,8 @@ export default function Footer() {
         <Link className="text-xs" href="/posts">
           Posts
         </Link>
-        <Link className="text-xs" href="/hobbes">
-          Hobbes
+        <Link className="text-xs" href="/hobbies">
+          Hobbies
         </Link>
       </div>
     </div>
