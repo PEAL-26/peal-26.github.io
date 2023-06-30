@@ -1,9 +1,4 @@
-import { cookies } from 'next/headers'
-
-import Avatar from '@/components/avatar'
-import HeaderAdmin from '@/components/header-admin'
-import Unauthenticated from '@/components/unauthenticated'
-import ButtonLoginGithub from '@/components/button-login-github'
+import AdminLayoutComponent from '@/components/admin-layout-component'
 import BottomNavigationAdmin from '@/components/bottom-navigation-admin'
 
 interface Props {
@@ -13,14 +8,12 @@ interface Props {
 // TODO Remover em futuras actualizações, quando eu já não usar exportação estática
 export const dynamic = 'force-static'
 
-export default function RootLayout({ children }: Props) {
-  const cookieStore = cookies()
-  const isAuthenticated = cookieStore.has('user')
+export default function AdminLayout({ children }: Props) {
+
 
   return (
     <>
-      <HeaderAdmin>{isAuthenticated ? <Avatar /> : <ButtonLoginGithub />}</HeaderAdmin>
-      <div>{isAuthenticated ? <>{children}</> : <Unauthenticated />}</div>
+      <AdminLayoutComponent>{children}</AdminLayoutComponent>
       <BottomNavigationAdmin />
     </>
   )

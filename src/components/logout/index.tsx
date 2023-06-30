@@ -2,15 +2,19 @@
 
 import { MouseEvent } from 'react'
 import { signOut } from 'firebase/auth'
+import { useRouter } from 'next/navigation'
 
 import { auth } from '@/libs/firebase'
-import { deleteUserCookies } from '@/actions/auth'
+import { removeCookie } from '@/helpers/cookies'
 
 export default function Logout() {
+  const router = useRouter()
+
   const handleLogout = async (event: MouseEvent) => {
     event.preventDefault()
     await signOut(auth())
-    deleteUserCookies()
+    removeCookie('user', { path: '/admin' })
+    router.push('/admin')
   }
 
   return (

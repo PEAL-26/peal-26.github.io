@@ -1,10 +1,12 @@
 'use client'
+import { useRouter } from 'next/navigation'
 import { signInWithPopup, GithubAuthProvider } from 'firebase/auth'
 
 import { auth } from '@/libs/firebase'
-import { setUserCookies } from '@/actions/auth'
+import { setCookie, getCookie } from '@/helpers/cookies'
 
-export default function ButtonLoginGithub( ) {
+export default function ButtonLoginGithub() {
+  const router = useRouter()
 
   const handleLogin = async () => {
     const provider = new GithubAuthProvider()
@@ -13,7 +15,13 @@ export default function ButtonLoginGithub( ) {
     })
 
     const { user } = await signInWithPopup(auth(), provider)
-    setUserCookies({ user })
+    const tempoExpiracaoEmDias = 7
+    setCookie('user', JSON.stringify({ name: user.displayName, avatar: user.photoURL }), {
+      expires: tempoExpiracaoEmDias,
+      path: '/admin',
+    })
+
+    router.refresh()
   }
 
   return (
