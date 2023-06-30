@@ -1,5 +1,3 @@
-'use client'
-
 export const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY ?? '',
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN ?? '',
@@ -10,5 +8,3 @@ export const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID ?? '',
   keySiteReCAPTCHAEnterprise: process.env.NEXT_PUBLIC_FIREBASE_KEY_SITE_RECAPTCHA_ENTERPRISE ?? '',
 }
-
-console.log(firebaseConfig)

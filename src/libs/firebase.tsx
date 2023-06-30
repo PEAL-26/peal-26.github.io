@@ -11,7 +11,12 @@ export const app = () => initializeApp(firebaseConfig)
 
 export const analytics = () => getAnalytics(app())
 export const auth = () => getAuth(app())
-export const db = () => getFirestore(app())
+
+export const db = () => {
+  console.log(firebaseConfig)
+  return getFirestore(app())
+}
+
 export const appCheck = () =>
   initializeAppCheck(app(), {
     provider: new ReCaptchaEnterpriseProvider(firebaseConfig.keySiteReCAPTCHAEnterprise),
