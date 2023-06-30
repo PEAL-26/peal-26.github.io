@@ -29,14 +29,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
       # pass-secrets-to-workflow
       - name: Pass Secrets To Workflow
         uses: ./.github/workflows/nextjs.yml@main
 
       - name: Set Environment
         run: echo ${{secrets.NEXT_PUBLIC_FIREBASE_API_KEY}}
-      - name: Checkout
-        uses: actions/checkout@v3
+
       - name: Detect package manager
         id: detect-package-manager
         run: |
