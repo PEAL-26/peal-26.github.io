@@ -35,8 +35,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Set Environment
-        run: echo api_key $NEXT_PUBLIC_FIREBASE_API_KEY authDomain $NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
+      - name: Set Environment Variables
+        run: Definir as variáveis de ambiente
         env:
           NEXT_PUBLIC_FIREBASE_API_KEY: ${{secrets.NEXT_PUBLIC_FIREBASE_API_KEY}}
           NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: ${{secrets.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN}}
