@@ -32,6 +32,6 @@ export default async function PostDetails({ params }: Props) {
   )
 }
 
-export async function generateStaticParams() {
-  return [{slug: '__slug__'}]
-}
+// export async function generateStaticParams() {
+//   return [{slug: '__slug__'}]
+// }
