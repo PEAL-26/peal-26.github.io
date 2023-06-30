@@ -33,9 +33,5 @@ export default async function PostDetails({ params }: Props) {
 }
 
 export async function generateStaticParams() {
-  const posts = await getAll()
-
-  return posts.map((post) => ({
-    slug: post.slug,
-  }))
+  return [{slug: '__slug__'}]
 }
