@@ -26,8 +26,8 @@ concurrency:
 
 jobs:
   # pass-secrets-to-workflow
-  pass_secrets:
-    uses: ./.github/workflows/nextjs.yml
+  pass-secrets:
+    uses: peal-26/peal-26.github.io/.github/workflows/nextjs.yml@main
     secrets: inherit
 
   # Build job
