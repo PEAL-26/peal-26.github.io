@@ -21,6 +21,8 @@ export default function ListProjects() {
       setProjectos(projectos)
       setLoading(false)
     })()
+    //TODO: Remover isso depois do teste
+    console.log(process.env.NEXT_PUBLIC_TESTE2)
   }, [])
 
   if (loading) return <Loading />

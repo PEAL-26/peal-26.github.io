@@ -13,9 +13,6 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  //TODO: Remover isso depois do teste
-  console.log(process.env.NEXT_PUBLIC_TESTE2)
-
   return (
     <html lang="pt-pt">
       <body className={`${roboto.className} flex flex-1`}>
