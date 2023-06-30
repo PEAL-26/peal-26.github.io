@@ -23,6 +23,7 @@ export default function ListProjects() {
     })()
     //TODO: Remover isso depois do teste
     console.log(process.env.NEXT_PUBLIC_TESTE2)
+    console.log(process.env.NEXT_PUBLIC_FIREBASE_API_KEY)
   }, [])
 
   if (loading) return <Loading />
