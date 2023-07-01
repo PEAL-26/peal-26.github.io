@@ -22,9 +22,10 @@ export async function generateMetadata({ searchParams }: Props) {
 export const dynamic = 'force-static'
 
 export default async function Artigo({ searchParams }: Props) {
+  if (!searchParams.s) notFound()
   const post = await getBySlug(searchParams.s)
 
-   if (!post) notFound()
+  if (!post) notFound()
 
   return (
     <div>
