@@ -36,7 +36,13 @@ export default function Avatar({ name, src }: Props) {
       trigger="click"
       placement="bottom-end"
     >
-      <Image height={40} width={40} className="h-10 w-10 rounded-full" src={src} alt={name} />
+      <Image
+        height={40}
+        width={40}
+        className="h-10 w-10 cursor-pointer rounded-full"
+        src={src}
+        alt={name}
+      />
     </Tippy>
   )
 }
