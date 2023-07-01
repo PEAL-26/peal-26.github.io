@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Tippy from '@tippyjs/react'
 
 import Logout from '../logout'
 
@@ -11,12 +12,31 @@ interface Props {
 
 export default function Avatar({ name, src }: Props) {
   return (
-    <div className="flex items-center space-x-4">
-      <Image height={40} width={40} className="h-10 w-10 rounded-full" src={src} alt="" />
-      <div className="font-medium hidden sm:block">
-        <div>{name}</div>
-        <Logout />
-      </div>
-    </div>
+    <Tippy
+      content={
+        <div className="flex flex-col items-center justify-center rounded-md border border-white/20 bg-black px-2 py-4 shadow">
+          <Image
+            height={56}
+            width={56}
+            className="mb-1 h-14 w-14 rounded-full"
+            src={src}
+            alt={name}
+          />
+
+          <div className="flex flex-col text-center font-medium">
+            <span className="mb-2 font-bold">{name}</span>
+            <Logout />
+          </div>
+        </div>
+      }
+      allowHTML
+      interactive
+      duration={0}
+      animation="perspective-subtle"
+      trigger="click"
+      placement="bottom-end"
+    >
+      <Image height={40} width={40} className="h-10 w-10 rounded-full" src={src} alt={name} />
+    </Tippy>
   )
 }

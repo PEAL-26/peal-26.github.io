@@ -32,7 +32,7 @@ export default function ListPostsHome(props: Props) {
 
   return (
     <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-      {lastPosts.map((data, index) => (
+      {lastPosts.map((data) => (
         <Post key={data.id} data={data} />
       ))}
     </div>

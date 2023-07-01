@@ -26,7 +26,7 @@ export default function Timeline({ data, primeiro, ultimo }: Props) {
         {data.resume}
       </p>
       <Link
-        href={`/posts/${data.slug}`}
+        href={`/posts/artigo?s=${data.slug}`}
         className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-white focus:z-10  focus:outline-none "
       >
         Ler artigo<BsArrowRightShort size={20} />

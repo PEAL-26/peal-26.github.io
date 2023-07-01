@@ -6,7 +6,7 @@ export default function FormularioFeedback() {
 
   return (
     <form>
-      <div className="mb-4 w-80 rounded-md border border-white/20 bg-gray">
+      <div className="mb-4 w-80 max-sm:w-full rounded-md border border-white/20 bg-gray">
         <div className="rounded-t-lg bg-gray/50 p-2">
           <label /*for="comment"*/ className="sr-only">Sua mensagem</label>
           <textarea
@@ -21,7 +21,7 @@ export default function FormularioFeedback() {
           <ReaccaoFeedback onReaccao={setReaccao} />
           <button
             type="submit"
-            className="inline-flex items-center rounded-lg bg-white px-4 py-2.5 text-center text-xs font-medium text-black hover:bg-white/70 focus:ring-4 focus:ring-white/80"
+            className="max-sm:ml-5 inline-flex items-center rounded-lg bg-white px-4 py-2.5 text-center text-xs font-medium text-black hover:bg-white/70 focus:ring-4 focus:ring-white/80"
           >
             Enviar
           </button>

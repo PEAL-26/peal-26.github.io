@@ -8,10 +8,12 @@ interface Props {
 }
 
 export default function Post({ data }: Props) {
+  const link = `/posts/artigo?s=${data.slug}`
+
   return (
     <Link
-      href={`/posts/${data.slug}`}
-      className="group flex w-full cursor-pointer flex-col justify-between rounded-md bg-black p-8 transition-all hover:scale-105 gap-4"
+      href={link}
+      className="group flex w-full cursor-pointer flex-col justify-between gap-4 rounded-md bg-black p-8 transition-all hover:scale-105"
     >
       <div>
         <time className="mb-1 text-xs font-normal leading-none text-neutral-500">
@@ -21,7 +23,7 @@ export default function Post({ data }: Props) {
         <p className="mb-4 line-clamp-6 font-normal text-white/75">{data.resume}</p>
       </div>
       <Link
-        href={`/posts/${data.slug}`}
+        href={link}
         className="inline-flex items-center gap-2 text-sm font-medium text-white transition-all focus:z-10  focus:outline-none group-hover:text-primary "
       >
         Ler artigo

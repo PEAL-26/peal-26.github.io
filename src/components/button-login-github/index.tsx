@@ -40,10 +40,10 @@ export default function ButtonLoginGithub() {
       onClick={handleLogin}
     >
       {isLoading ? (
-        <AiOutlineLoading size={16} className="-ml-1 mr-2 h-4 w-4" />
+        <AiOutlineLoading size={16} className="-ml-1 mr-2 h-4 w-4 animate-spin max-sm:mr-0" />
       ) : (
         <svg
-          className="-ml-1 mr-2 h-4 w-4"
+          className="-ml-1 mr-2 h-4 w-4 max-sm:mr-0"
           aria-hidden="true"
           focusable="false"
           data-prefix="fab"
@@ -58,7 +58,7 @@ export default function ButtonLoginGithub() {
           ></path>
         </svg>
       )}
-      Login com Github
+      <span className="max-sm:hidden">Login com Github</span>
     </button>
   )
 }

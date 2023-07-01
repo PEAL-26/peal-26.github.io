@@ -38,9 +38,9 @@ export default function Sidebar() {
             className="cursor-pointer rounded-full"
           />
         </Link>
-        <h1 className="max-w-[250px] text-center text-2xl font-bold">
+        <span className="max-w-[250px] text-center text-2xl font-bold">
           Pedro Edilásio Araújo Lopes{' '}
-        </h1>
+        </span>
       </div>
 
       {/* Redes Sociais */}

@@ -12,9 +12,9 @@ export default function Home() {
     <div className="flex flex-1 flex-col my-7">
       <div className="mb-7 flex flex-col items-center gap-3">
         <LogoHome />
-        <h1 className="text-center text-3xl font-bold">Pedro Edilásio Araújo Lopes</h1>
+        <span className="text-center text-3xl font-bold">Pedro Edilásio Araújo Lopes</span>
       </div>
-      <h3 className="mb-2 text-xl font-bold text-white">Últimos artigos</h3>
+      <span className="mb-2 text-xl font-bold text-white">Últimos artigos</span>
       <ListPostsHome />
     </div>
   )
