@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Scrollspy } from '@makotot/ghostui'
 
 import Subtitle from '../subtitle'
@@ -10,12 +10,21 @@ import useSticked from '@/hooks/use-sticked'
 
 import { CAPITULOS } from './data'
 import { setListRefs } from '@/helpers/refs'
+import Loading from '../loading'
 
 const PRIMEIRO_ELEMENTO = 0
 
 export default function BiografiaComponent() {
+  const [isLoading, setIsLoading] = useState(true)
+
   const sectionRefs = setListRefs<HTMLDivElement>(CAPITULOS.length)
   const { isSticked, refSticker } = useSticked()
+
+  useEffect(() => {
+    setIsLoading(false)
+  }, [])
+
+  if (isLoading) return <Loading />
 
   return (
     <div className="my-7 flex flex-1">
