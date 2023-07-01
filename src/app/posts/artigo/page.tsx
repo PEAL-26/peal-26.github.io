@@ -18,6 +18,9 @@ export async function generateMetadata({ searchParams }: Props) {
   return { title: post.title }
 }
 
+// TODO Remover em futuras actualizações, quando eu já não usar exportação estática
+export const dynamic = 'force-static'
+
 export default async function Artigo({ searchParams }: Props) {
   const post = await getBySlug(searchParams.s)
 
