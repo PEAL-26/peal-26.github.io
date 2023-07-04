@@ -15,7 +15,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-pt">
-      <body className={`${roboto.className} flex flex-1`}>
+      <body className={`${roboto.className} sm:relative flex flex-1`}>
         <Sidebar />
         <div className="ml-0 flex-1 p-7 transition-all lg:ml-[290px]">
           <ButtonMenu />

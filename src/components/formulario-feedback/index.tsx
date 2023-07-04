@@ -12,7 +12,7 @@ export default function FormularioFeedback() {
           <textarea
             id="mensagem"
             rows={6}
-            className="w-full h-full resize-none overflow-y-auto rounded-md border border-white/20 bg-gray/50 p-2 text-sm text-white focus:border-white/70 focus:outline-0 focus:ring-0 "
+            className="w-full h-full resize-none overflow-y-auto placeholder-white/20 rounded-md border border-white/20 bg-gray/50 p-2 text-sm text-white focus:border-white/70 focus:outline-0 focus:ring-0 "
             placeholder="Escreva a sua mensagem..."
             required
           ></textarea>
