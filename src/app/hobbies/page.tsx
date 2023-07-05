@@ -1,4 +1,5 @@
 import Header from '@/components/header'
+import HobbiesComponent from '@/components/hobbies-component'
 
 export const metadata = {
   title: 'Hobbies',
@@ -10,8 +11,7 @@ export default function Hobbies() {
   return (
     <>
       <Header title="Hobbies" />
-
-      <div className="my-7 px-5"></div>
+      <HobbiesComponent />
     </>
   )
 }
