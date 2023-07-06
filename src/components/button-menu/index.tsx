@@ -65,20 +65,21 @@ export default function ButtonMenu() {
         menuItem.removeEventListener('click', hidden)
       })
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
     <>
-      {open ? (
+      {open && (
         <button className={`absolute left-[246px] top-3 z-[60]`} onClick={hidden}>
           <IoCloseOutline size={32} />
         </button>
-      ) : (
-        <button className={`mb-2 flex lg:hidden`} onClick={show}>
-          <FiMenu size={32} />
-        </button>
       )}
+
+      <button className={`mb-2 flex lg:hidden`} onClick={show}>
+        <FiMenu size={32} />
+      </button>
+
       {/* backdrop */}
       {open && <div onClick={hidden} className="absolute left-0 top-0 z-40 h-full w-full" />}
     </>

@@ -20,6 +20,8 @@ interface Props {
   isSticked?: boolean
 }
 
+const OCULTO = -1
+
 export default function ScrollspyMenu({ menus, current, sectionRefs, isSticked }: Props) {
   const isMobile = useMediaQuery('(max-width: 767px)')
 
@@ -52,11 +54,11 @@ export default function ScrollspyMenu({ menus, current, sectionRefs, isSticked }
 
     const classNameContainer = {
       mobile: 'fixed top-0 left-0 w-full transition-all',
-      other: 'rounded-md min-h-screen sticky top-0 w-full self-start w-[20%]',
+      other: 'rounded-md min-h-screen sticky top-0  self-start ',
     }
 
     const classNameHeaderTitle = {
-      show: 'top-0 translate-y-0',
+      show: 'translate-y-0',
       hide: '-top-[290px] -translate-y-[290px]',
     }
 
@@ -73,11 +75,11 @@ export default function ScrollspyMenu({ menus, current, sectionRefs, isSticked }
 
   return (
     <div
-      className={`${
-        current > -1 ? '' : 'max-sm:hidden'
-      } bg-black p-3 ${containerMenu} ${visibleMenu} `}
+      className={`bg-black p-3 ${
+        current === OCULTO ? 'max-sm:hidden' : ''
+      } ${containerMenu} ${visibleMenu} `}
     >
-      <ul className="flex flex-col gap-3 text-white">
+      <ul className="md:flex md:flex-col md:gap-3 text-white">
         {menus.map(({ id, titulo }, index) => (
           <li
             key={index}

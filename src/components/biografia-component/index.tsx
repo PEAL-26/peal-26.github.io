@@ -32,7 +32,7 @@ export default function BiografiaComponent() {
       <Scrollspy sectionRefs={sectionRefs}>
         {({ currentElementIndexInViewport }) => (
           <div className="flex flex-1 flex-col-reverse items-start gap-4 md:flex-row">
-            <div className="flex w-full flex-col items-center gap-8 lg:w-[80%]">
+            <div className="flex w-full flex-col items-center gap-8 ">
               <h1 className="mb-2 max-w-md  text-center text-xl font-bold uppercase">
                 Uma Jornada na Programação: Adaptando-se às Mudanças Tecnológicas
               </h1>
