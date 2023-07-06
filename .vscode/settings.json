@@ -7,12 +7,14 @@
         "Expiracao",
         "Firestore",
         "Formulario",
+        "generos",
         "Projecto",
         "projectos",
         "Reaccao",
         "RECAPTCHA",
         "Scrollspy",
         "signup",
+        "Swiper",
         "tippyjs"
     ]
 }

@@ -1,9 +1,13 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Key } from 'react'
 
 import Loading from '../loading'
+import { Cartaz } from '../cartaz'
 import { Section } from '../section'
+
+import { hobbiesData } from './data'
+import { CartazItemType } from '../cartaz/types'
 
 export default function HobbiesComponent() {
   const [loading, setLoading] = useState(true)
@@ -20,11 +24,19 @@ export default function HobbiesComponent() {
       <Section.Root>
         <Section.Header title="Animes e Bonecos" description="Explorando o mundo dos animes" />
         <Section.TabBar tabs={['Animes', 'Bonecos']}>
-          {/* Filmes */}
-          <>Filmes</>
+          {/* Animes */}
+          <Cartaz.Container className="w-full">
+            {hobbiesData.animes.map((anime: CartazItemType, index: number) => (
+              <Cartaz.Item key={index} data={anime} />
+            ))}
+          </Cartaz.Container>
 
-          {/* Séries */}
-          <>Séries</>
+          {/* Bonecos */}
+          <Cartaz.Container>
+            {hobbiesData.bonecos.map((boneco: CartazItemType, index: number) => (
+              <Cartaz.Item key={index} data={boneco} />
+            ))}
+          </Cartaz.Container>
         </Section.TabBar>
       </Section.Root>
 
@@ -33,10 +45,18 @@ export default function HobbiesComponent() {
         <Section.Header title="Filmes e Séries" />
         <Section.TabBar tabs={['Filmes', 'Séries']}>
           {/* Filmes */}
-          <>Filmes</>
+          <Cartaz.Container>
+            {/* {hobbiesData.filmes.map((filme, index) => (
+              <Cartaz.Item key={index} data={filme} />
+            ))} */}
+          </Cartaz.Container>
 
           {/* Séries */}
-          <>Séries</>
+          <Cartaz.Container>
+            {/* {hobbiesData.series.map((serie, index) => (
+              <Cartaz.Item key={index} data={serie} />
+            ))} */}
+          </Cartaz.Container>
         </Section.TabBar>
       </Section.Root>
 

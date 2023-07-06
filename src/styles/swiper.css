@@ -1,0 +1,11 @@
+/* .swiper {
+  width: 100%;
+} */
+
+.swiper .swiper-wrapper .swiper-initialized .swiper-horizontal .swiper-backface-hidden {
+  width: 100px;
+} 
+
+.tab-section {
+  width: 100%;
+}

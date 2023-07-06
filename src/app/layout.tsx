@@ -9,13 +9,14 @@ const roboto = RobotoFlex({ subsets: ['latin'] })
 
 export const metadata = {
   title: { default: 'PEAL', template: '%s | PEAL' },
-  description: '',
+  description:
+    'Bem-vindo ao meu site! Aqui você encontrará minha biografia, projetos e postagens relacionadas à programação. Explore meu trabalho e descubra minha paixão pela programação.',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-pt">
-      <body className={`${roboto.className} sm:relative flex flex-1`}>
+      <body className={`${roboto.className} flex flex-1 sm:relative`}>
         <Sidebar />
         <div className="ml-0 flex-1 p-7 transition-all lg:ml-[290px]">
           <ButtonMenu />
