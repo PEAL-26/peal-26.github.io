@@ -59,6 +59,15 @@ export const hobbiesData: Hobby = {
   ],
 
   bonecos: [
+    {
+      title: 'Naruto Classico',
+      description:
+        'Naruto, um jovem ninja desajeitado e hiperativo, busca se tornar o Hokage da sua vila, enfrentando desafios, fazendo amizades e descobrindo segredos obscuros sobre seu passado.',
+      state: 'assistido',
+      image: '/images/animes/naruto-classico.jpeg',
+      alt: 'naruto-classico',
+      link: '',
+    },
     { name: 'Naruto', description: '', state: 'Assistido', image: '', link: '' },
     { name: 'Naruto', description: '', state: 'Assistido', image: '', link: '' },
   ],
@@ -69,8 +78,62 @@ export const hobbiesData: Hobby = {
   ],
 
   series: [
-    { name: 'Mr. Robot', gender: 'Artistas', state: 'Assistido' },
-    { name: 'Sillicon Vile', gender: 'Artistas', state: 'Assistido' },
+    {
+      title: 'Black Mirror',
+      description: '',
+      state: 'assistido',
+      image: '/images/series/black-mirror.jpeg',
+      alt: 'black-mirror',
+      link: '',
+    },
+    {
+      title: 'Control Z',
+      description: '',
+      state: 'assistido',
+      image: '/images/series/control-z.jpeg',
+      alt: 'control-z',
+      link: '',
+    },
+    {
+      title: 'Gamebros',
+      description: '',
+      state: 'assistido',
+      image: '/images/series/gamebros.jpeg',
+      alt: 'gamebros',
+      link: '',
+    },
+    {
+      title: 'Scorpion',
+      description: '',
+      state: 'assistido',
+      image: '/images/series/scorpion.jpeg',
+      alt: 'scorpion',
+      link: '',
+    },
+    {
+      title: 'Silicon Valley',
+      description: '',
+      state: 'assistido',
+      image: '/images/series/silicon-valley.jpeg',
+      alt: 'silicon-valley',
+      link: '',
+    },
+    {
+      title: 'A Teoria do Big Bang',
+      description: '',
+      state: 'assistido',
+      image: '/images/series/the-big-bang-theory.jpeg',
+      alt: 'the-big-bang-theory',
+      link: '',
+    },
+    {
+      title: 'Travelers',
+      description: '',
+      state: 'assistido',
+      image: '/images/series/travelers.jpeg',
+      alt: 'travelers',
+      link: '',
+    },
   ],
 
   musicas: {

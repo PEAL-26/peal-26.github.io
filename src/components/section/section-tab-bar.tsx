@@ -39,7 +39,7 @@ export default function SectionTabBar({ tabs, children, ...rest }: Props) {
   }, [])
 
   return (
-    <div {...rest} className={twMerge('', rest.className)}>
+    <div {...rest} className={twMerge('section-tab-bar', rest.className)}>
       <ul className="mb-4 flex gap-3">
         {tabs.map((tab, i) => (
           <li
@@ -63,7 +63,7 @@ export default function SectionTabBar({ tabs, children, ...rest }: Props) {
             <div
               key={index}
               id={`#tab-${tabIds[index]}`}
-              className={`${index !== tabActual ? 'hidden' : ''}`}
+              className={`${index !== tabActual ? 'hidden ' : ''}w-full overflow-x-auto`}
             >
               {child}
             </div>

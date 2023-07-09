@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, Key } from 'react'
+import { useState, useEffect, Key, useRef } from 'react'
 
 import Loading from '../loading'
 import { Cartaz } from '../cartaz'
@@ -11,8 +11,18 @@ import { CartazItemType } from '../cartaz/types'
 
 export default function HobbiesComponent() {
   const [loading, setLoading] = useState(true)
+  const [maxHeightCartaz, setMaxHeightCartaz] = useState(0)
 
   useEffect(() => {
+    // const paddingBottom = 24
+    // if (cartazRef.current?.clientHeight)
+    //   setMaxHeightCartaz(cartazRef.current.clientHeight + paddingBottom)
+
+    // const sectionElement = cartazRef?.current
+    // const contentElement = sectionElement.querySelector('.content')
+    // const contentHeight = contentElement.offsetHeight
+    // sectionElement.style.height = `${contentHeight}px`
+
     setLoading(false)
   }, [])
 
@@ -21,15 +31,21 @@ export default function HobbiesComponent() {
   return (
     <div className="my-7 flex flex-col gap-6">
       {/* Section Animes */}
-      <Section.Root>
+      <Section.Root className={`relative flex flex-col`}>
         <Section.Header title="Animes e Bonecos" description="Explorando o mundo dos animes" />
         <Section.TabBar tabs={['Animes', 'Bonecos']}>
           {/* Animes */}
-          <Cartaz.Container className="w-full">
+          <div className="absolute left-6 right-6 flex  gap-3 overflow-x-auto section-content">
             {hobbiesData.animes.map((anime: CartazItemType, index: number) => (
               <Cartaz.Item key={index} data={anime} />
             ))}
-          </Cartaz.Container>
+          </div>
+
+          {/* <Cartaz.Container>
+            {hobbiesData.animes.map((anime: CartazItemType, index: number) => (
+              <Cartaz.Item key={index} data={anime} />
+            ))}
+          </Cartaz.Container> */}
 
           {/* Bonecos */}
           <Cartaz.Container>
@@ -53,7 +69,7 @@ export default function HobbiesComponent() {
 
           {/* Séries */}
           <Cartaz.Container>
-            {/* {hobbiesData.series.map((serie, index) => (
+            {/* {hobbiesData.series.map((serie: CartazItemType, index: number) => (
               <Cartaz.Item key={index} data={serie} />
             ))} */}
           </Cartaz.Container>
