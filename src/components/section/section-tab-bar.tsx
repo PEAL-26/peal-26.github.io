@@ -1,6 +1,6 @@
 'use client'
 
-import { HTMLAttributes, ReactNode, useEffect, useState } from 'react'
+import { HTMLAttributes, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 interface Props extends HTMLAttributes<HTMLElement> {
@@ -63,7 +63,9 @@ export default function SectionTabBar({ tabs, children, ...rest }: Props) {
             <div
               key={index}
               id={`#tab-${tabIds[index]}`}
-              className={`${index !== tabActual ? 'hidden ' : ''}w-full overflow-x-auto`}
+              className={`${
+                index !== tabActual ? 'hidden ' : ''
+              }w-full section-tab-bar-content relative flex h-full flex-1`}
             >
               {child}
             </div>

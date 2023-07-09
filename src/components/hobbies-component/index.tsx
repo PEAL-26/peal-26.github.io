@@ -31,49 +31,47 @@ export default function HobbiesComponent() {
   return (
     <div className="my-7 flex flex-col gap-6">
       {/* Section Animes */}
-      <Section.Root className={`relative flex flex-col`}>
+      <Section.Root className={`flex flex-col`}>
         <Section.Header title="Animes e Bonecos" description="Explorando o mundo dos animes" />
-        <Section.TabBar tabs={['Animes', 'Bonecos']}>
-          {/* Animes */}
-          <div className="absolute left-6 right-6 flex  gap-3 overflow-x-auto section-content">
-            {hobbiesData.animes.map((anime: CartazItemType, index: number) => (
-              <Cartaz.Item key={index} data={anime} />
-            ))}
-          </div>
+        <Section.Content>
+          <Section.TabBar tabs={['Animes', 'Bonecos']}>
+            {/* Animes */}
+            <Cartaz.Container>
+              {hobbiesData.animes.map((anime: CartazItemType, index: number) => (
+                <Cartaz.Item key={index} data={anime} />
+              ))}
+            </Cartaz.Container>
 
-          {/* <Cartaz.Container>
-            {hobbiesData.animes.map((anime: CartazItemType, index: number) => (
-              <Cartaz.Item key={index} data={anime} />
-            ))}
-          </Cartaz.Container> */}
-
-          {/* Bonecos */}
-          <Cartaz.Container>
-            {hobbiesData.bonecos.map((boneco: CartazItemType, index: number) => (
-              <Cartaz.Item key={index} data={boneco} />
-            ))}
-          </Cartaz.Container>
-        </Section.TabBar>
+            {/* Bonecos */}
+            <Cartaz.Container>
+              {hobbiesData.bonecos.map((boneco: CartazItemType, index: number) => (
+                <Cartaz.Item key={index} data={boneco} />
+              ))}
+            </Cartaz.Container>
+          </Section.TabBar>
+        </Section.Content>
       </Section.Root>
 
       {/* Section Filmes e Series */}
       <Section.Root>
         <Section.Header title="Filmes e Séries" />
-        <Section.TabBar tabs={['Filmes', 'Séries']}>
-          {/* Filmes */}
-          <Cartaz.Container>
-            {/* {hobbiesData.filmes.map((filme, index) => (
-              <Cartaz.Item key={index} data={filme} />
-            ))} */}
-          </Cartaz.Container>
+        <Section.Content>
+          <Section.TabBar tabs={['Filmes', 'Séries']}>
+            {/* Filmes */}
+            <Cartaz.Container>
+              {hobbiesData.filmes.map((filme: CartazItemType, index: number) => (
+                <Cartaz.Item key={index} data={filme} />
+              ))}
+            </Cartaz.Container>
 
-          {/* Séries */}
-          <Cartaz.Container>
-            {/* {hobbiesData.series.map((serie: CartazItemType, index: number) => (
-              <Cartaz.Item key={index} data={serie} />
-            ))} */}
-          </Cartaz.Container>
-        </Section.TabBar>
+            {/* Séries */}
+            <Cartaz.Container>
+              {hobbiesData.series.map((serie: CartazItemType, index: number) => (
+                <Cartaz.Item key={index} data={serie} />
+              ))}
+            </Cartaz.Container>
+          </Section.TabBar>
+        </Section.Content>
       </Section.Root>
 
       {/* Section Música */}
@@ -82,23 +80,27 @@ export default function HobbiesComponent() {
           title="Música"
           description="Afundando nas batidas: descobrindo a diversidade da música que preenche a minha vida"
         />
-        <Section.TabBar tabs={['Artistas', 'Géneros']}>
-          {/* Artistas */}
-          <div>Artistas</div>
+        <Section.Content>
+          <Section.TabBar tabs={['Artistas', 'Géneros']}>
+            {/* Artistas */}
+            <div>Artistas</div>
 
-          {/* Géneros */}
-          <div>Géneros</div>
-        </Section.TabBar>
+            {/* Géneros */}
+            <div>Géneros</div>
+          </Section.TabBar>
+        </Section.Content>
       </Section.Root>
 
       {/* Section Livros */}
       <Section.Root>
         <Section.Header title="Livros" />
+        <Section.Content></Section.Content>
       </Section.Root>
 
       {/* Section Desporto */}
       <Section.Root>
         <Section.Header title="Desporto" />
+        <Section.Content></Section.Content>
       </Section.Root>
     </div>
   )
