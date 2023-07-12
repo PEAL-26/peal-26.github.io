@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, Key, useRef } from 'react'
+import { useState, useEffect } from 'react'
 
 import Loading from '../loading'
 import { Cartaz } from '../cartaz'
@@ -8,6 +8,8 @@ import { Section } from '../section'
 
 import { hobbiesData } from './data'
 import { CartazItemType } from '../cartaz/types'
+import { Music, MusicItemDataType } from '../music-component'
+import { Livro, LivroItemType } from '../livro'
 
 export default function HobbiesComponent() {
   const [loading, setLoading] = useState(true)
@@ -31,49 +33,47 @@ export default function HobbiesComponent() {
   return (
     <div className="my-7 flex flex-col gap-6">
       {/* Section Animes */}
-      <Section.Root className={`relative flex flex-col`}>
+      <Section.Root autoSize>
         <Section.Header title="Animes e Bonecos" description="Explorando o mundo dos animes" />
-        <Section.TabBar tabs={['Animes', 'Bonecos']}>
-          {/* Animes */}
-          <div className="absolute left-6 right-6 flex  gap-3 overflow-x-auto section-content">
-            {hobbiesData.animes.map((anime: CartazItemType, index: number) => (
-              <Cartaz.Item key={index} data={anime} />
-            ))}
-          </div>
+        <Section.Content>
+          <Section.TabBar tabs={['Animes', 'Bonecos']} classContent="relative">
+            {/* Animes */}
+            <Cartaz.Container>
+              {hobbiesData.animes.map((anime: CartazItemType, index: number) => (
+                <Cartaz.Item key={index} data={anime} />
+              ))}
+            </Cartaz.Container>
 
-          {/* <Cartaz.Container>
-            {hobbiesData.animes.map((anime: CartazItemType, index: number) => (
-              <Cartaz.Item key={index} data={anime} />
-            ))}
-          </Cartaz.Container> */}
-
-          {/* Bonecos */}
-          <Cartaz.Container>
-            {hobbiesData.bonecos.map((boneco: CartazItemType, index: number) => (
-              <Cartaz.Item key={index} data={boneco} />
-            ))}
-          </Cartaz.Container>
-        </Section.TabBar>
+            {/* Bonecos */}
+            <Cartaz.Container>
+              {hobbiesData.bonecos.map((boneco: CartazItemType, index: number) => (
+                <Cartaz.Item key={index} data={boneco} />
+              ))}
+            </Cartaz.Container>
+          </Section.TabBar>
+        </Section.Content>
       </Section.Root>
 
       {/* Section Filmes e Series */}
-      <Section.Root>
+      <Section.Root autoSize>
         <Section.Header title="Filmes e Séries" />
-        <Section.TabBar tabs={['Filmes', 'Séries']}>
-          {/* Filmes */}
-          <Cartaz.Container>
-            {/* {hobbiesData.filmes.map((filme, index) => (
-              <Cartaz.Item key={index} data={filme} />
-            ))} */}
-          </Cartaz.Container>
+        <Section.Content>
+          <Section.TabBar tabs={['Filmes', 'Séries']} classContent="relative">
+            {/* Filmes */}
+            <Cartaz.Container>
+              {hobbiesData.filmes.map((filme: CartazItemType, index: number) => (
+                <Cartaz.Item key={index} data={filme} />
+              ))}
+            </Cartaz.Container>
 
-          {/* Séries */}
-          <Cartaz.Container>
-            {/* {hobbiesData.series.map((serie: CartazItemType, index: number) => (
-              <Cartaz.Item key={index} data={serie} />
-            ))} */}
-          </Cartaz.Container>
-        </Section.TabBar>
+            {/* Séries */}
+            <Cartaz.Container>
+              {hobbiesData.series.map((serie: CartazItemType, index: number) => (
+                <Cartaz.Item key={index} data={serie} />
+              ))}
+            </Cartaz.Container>
+          </Section.TabBar>
+        </Section.Content>
       </Section.Root>
 
       {/* Section Música */}
@@ -82,24 +82,43 @@ export default function HobbiesComponent() {
           title="Música"
           description="Afundando nas batidas: descobrindo a diversidade da música que preenche a minha vida"
         />
-        <Section.TabBar tabs={['Artistas', 'Géneros']}>
-          {/* Artistas */}
-          <div>Artistas</div>
+        <Section.Content>
+          <Section.TabBar tabs={['Artistas', 'Géneros']}>
+            {/* Artistas */}
+            <Music.Root>
+              {hobbiesData.musicas.artistas.map((artista: MusicItemDataType, index: number) => (
+                <Music.Item key={index} data={artista} iconType="music" />
+              ))}
+            </Music.Root>
 
-          {/* Géneros */}
-          <div>Géneros</div>
-        </Section.TabBar>
+            {/* Géneros */}
+            <Music.Root>
+              {hobbiesData.musicas.generos.map((genero: MusicItemDataType, index: number) => (
+                <Music.Item key={index} data={genero} iconType="mic" />
+              ))}
+            </Music.Root>
+          </Section.TabBar>
+        </Section.Content>
       </Section.Root>
 
       {/* Section Livros */}
       <Section.Root>
         <Section.Header title="Livros" />
+        <Section.Content>
+          <Livro.Root>
+            {hobbiesData.livros.map((livro: LivroItemType, index: number) => (
+              <Livro.Item key={index} data={livro} />
+            ))}
+          </Livro.Root>
+        </Section.Content>
       </Section.Root>
 
+      {/* TODO: por fazer */}
       {/* Section Desporto */}
-      <Section.Root>
+      {/* <Section.Root>
         <Section.Header title="Desporto" />
-      </Section.Root>
+        <Section.Content></Section.Content>
+      </Section.Root> */}
     </div>
   )
 }

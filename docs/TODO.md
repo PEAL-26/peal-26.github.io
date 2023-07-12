@@ -10,4 +10,3 @@
 [ ] Detalhes do post
 [ ] Insert/Update post page (admin)
 [ ] List post page (admin)
-[ ]

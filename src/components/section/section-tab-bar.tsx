@@ -1,11 +1,11 @@
 'use client'
 
-import { HTMLAttributes, ReactNode, useEffect, useState } from 'react'
+import { HTMLAttributes, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 interface Props extends HTMLAttributes<HTMLElement> {
-  // children?: Element
   tabs: string[]
+  classContent?: string
 }
 
 const randomIds = (length: number) => {
@@ -29,7 +29,9 @@ const TAB_BAR_STATE = {
   },
 }
 
-export default function SectionTabBar({ tabs, children, ...rest }: Props) {
+export default function SectionTabBar(props: Props) {
+  const { tabs, classContent, children, ...rest } = props
+
   const [tabActual, setTabActual] = useState(0)
   const [tabIds, setTabIds] = useState<string[]>([])
 
@@ -63,7 +65,10 @@ export default function SectionTabBar({ tabs, children, ...rest }: Props) {
             <div
               key={index}
               id={`#tab-${tabIds[index]}`}
-              className={`${index !== tabActual ? 'hidden ' : ''}w-full overflow-x-auto`}
+              className={`section-tab-bar-content ${index !== tabActual ? 'hidden ' : ''} ${twMerge(
+                'flex h-full w-full flex-1',
+                classContent,
+              )}`}
             >
               {child}
             </div>

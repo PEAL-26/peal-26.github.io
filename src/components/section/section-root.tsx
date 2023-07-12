@@ -1,79 +1,131 @@
-import { HTMLAttributes, ReactNode, useEffect, useRef } from 'react'
+import { Children, HTMLAttributes, ReactNode, useEffect, useRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 interface Props extends HTMLAttributes<HTMLElement> {
+  autoSize?: boolean
   children?: ReactNode
 }
 
-export default function SectionRoot({ children, ...rest }: Props) {
+const getHeight = (element: HTMLElement | null): number => {
+  return element ? element.scrollHeight : 0
+}
+
+type orientationSpacing = 'top' | 'right' | 'bottom' | 'left' | 'horizontal' | 'vertical' | 'all'
+type typeSpacing = 'padding' | 'margin'
+
+const getSpacing = (
+  styles: CSSStyleDeclaration | null,
+  orientation: orientationSpacing,
+  type: typeSpacing,
+): number => {
+  if (!styles) return 0
+
+  const top = type === 'margin' ? parseFloat(styles.marginTop) : parseFloat(styles.paddingTop)
+  const right = type === 'margin' ? parseFloat(styles.marginRight) : parseFloat(styles.paddingRight)
+  const bottom =
+    type === 'margin' ? parseFloat(styles.marginBottom) : parseFloat(styles.paddingBottom)
+  const left = type === 'margin' ? parseFloat(styles.marginLeft) : parseFloat(styles.paddingLeft)
+
+  const horizontal = left + right
+  const vertical = top + bottom
+  const all = horizontal + vertical
+
+  const margin = {
+    top,
+    right,
+    bottom,
+    left,
+    horizontal,
+    vertical,
+    all,
+  }[orientation]
+
+  return margin
+}
+
+const getTotal = (...numbers: number[]) => {
+  let total = 0
+  if (numbers.length === 1 && Array.isArray(numbers[0])) {
+    numbers = numbers[0]
+  }
+  for (let i = 0; i < numbers.length; i++) {
+    total += numbers[i]
+  }
+  return total
+}
+
+// Função auxiliar para comparar os arrays de filhos
+const areChildrenEqual = (children: ReactNode[], childrenCompare: ReactNode[]) => {
+  if (children.length !== childrenCompare.length) {
+    return false
+  }
+
+  for (let i = 0; i < children.length; i++) {
+    if (children[i] !== childrenCompare[i]) {
+      return false
+    }
+  }
+
+  return true
+}
+
+export default function SectionRoot(props: Props) {
+  const { children, autoSize = false, ...rest } = props
   const sectionRef = useRef<HTMLElement>(null)
+  const previousChildrenRef = useRef<ReactNode[] | null>(null)
 
   useEffect(() => {
+    if (!autoSize) return
     if (!sectionRef.current) return
 
-    // const sectionPadding = 48
     const sectionElement = sectionRef.current
     const sectionHeaderElement = sectionElement.querySelector<HTMLElement>('.section-header')
-    const sectionTabBarElement = sectionElement.querySelector<HTMLElement>('.section-tab-bar')
     const contentElement = sectionElement.querySelector<HTMLElement>('.section-content')
 
     const sectionElementStyles = window.getComputedStyle(sectionElement)
     const sectionHeaderElementStyles =
       sectionHeaderElement && window.getComputedStyle(sectionHeaderElement)
-    const sectionTabBarElementStyles =
-      sectionTabBarElement && window.getComputedStyle(sectionTabBarElement)
     const contentElementStyles = contentElement && window.getComputedStyle(contentElement)
 
     const heightHeader = sectionHeaderElement?.scrollHeight || 0
-    const heightTabBar = sectionTabBarElement?.scrollHeight || 0
     const heightContent = contentElement?.scrollHeight || 0
 
-    const marginHeaderBottom = parseFloat(sectionHeaderElementStyles?.marginBottom || '0')
-    const marginTabBarBottom = parseFloat(sectionTabBarElementStyles?.marginBottom || '0')
-    const marginContentBottom = parseFloat(contentElementStyles?.marginBottom || '0')
+    const sectionPaddingSpacing = getSpacing(sectionElementStyles, 'vertical', 'padding')
+    const headerMarginSpacing = getSpacing(sectionHeaderElementStyles, 'vertical', 'margin')
+    const contentMarginSpacing = getSpacing(contentElementStyles, 'vertical', 'margin')
 
-    const marginHeaderTop = parseFloat(sectionHeaderElementStyles?.marginTop || '0')
-    const marginTabBarTop = parseFloat(sectionTabBarElementStyles?.marginTop || '0')
-    const marginContentTop = parseFloat(contentElementStyles?.marginTop || '0')
-
-    const paddingSectionBottom = parseFloat(sectionElementStyles?.paddingBottom || '0')
-    // const paddingHeaderBottom = parseFloat(sectionHeaderElementStyles?.paddingBottom || '0')
-    // const paddingTabBarBottom = parseFloat(sectionTabBarElementStyles?.paddingBottom || '0')
-    // const paddingContentBottom = parseFloat(contentElementStyles?.paddingBottom || '0')
-
-    const paddingSectionTop = parseFloat(sectionElementStyles?.paddingTop || '0')
-    // const paddingHeaderTop = parseFloat(sectionHeaderElementStyles?.paddingTop || '0')
-    // const paddingTabBarTop = parseFloat(sectionTabBarElementStyles?.paddingTop || '0')
-    // const paddingContentTop = parseFloat(contentElementStyles?.paddingTop || '0')
-
-    const heightTotal = heightHeader + heightTabBar + heightContent
-
-    const marginTotal =
-      marginHeaderBottom +
-      marginTabBarBottom +
-      marginContentBottom +
-      marginHeaderTop +
-      marginTabBarTop +
-      marginContentTop
-
-    const paddingTotal = paddingSectionTop + paddingSectionBottom
-    // paddingHeaderBottom +
-    // paddingTabBarBottom +
-    // paddingContentBottom +
-    // paddingHeaderTop +
-    // paddingTabBarTop +
-    // paddingContentTop
-
-    const total = heightTotal + marginTotal + paddingTotal
+    const total = getTotal(
+      heightHeader,
+      heightContent,
+      sectionPaddingSpacing,
+      headerMarginSpacing,
+      contentMarginSpacing,
+    )
 
     sectionElement.style.height = `${total}px`
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useEffect(() => {
+    const currentChildren = Children.toArray(children)
+    const previousChildren = previousChildrenRef.current
+
+    // Verifique se o conteúdo dos filhos mudou
+    if (previousChildren && !areChildrenEqual(currentChildren, previousChildren)) {
+      // O conteúdo dos filhos foi alterado!
+      console.log('O conteúdo dos filhos foi alterado:', currentChildren)
+      // Faça o que for necessário com o conteúdo modificado dos filhos
+    }
+
+    // Atualize a referência para o conteúdo dos filhos atual
+    previousChildrenRef.current = currentChildren
+  }, [children])
 
   return (
     <section
       ref={sectionRef}
-      {...rest}
       className={twMerge('rounded-md bg-black p-6 ', rest.className)}
+      {...rest}
     >
       {children}
     </section>
