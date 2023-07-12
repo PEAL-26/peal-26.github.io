@@ -2,6 +2,7 @@ import { Children, HTMLAttributes, ReactNode, useEffect, useRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 interface Props extends HTMLAttributes<HTMLElement> {
+  autoSize?: boolean
   children?: ReactNode
 }
 
@@ -68,11 +69,13 @@ const areChildrenEqual = (children: ReactNode[], childrenCompare: ReactNode[]) =
   return true
 }
 
-export default function SectionRoot({ children, ...rest }: Props) {
+export default function SectionRoot(props: Props) {
+  const { children, autoSize = false, ...rest } = props
   const sectionRef = useRef<HTMLElement>(null)
   const previousChildrenRef = useRef<ReactNode[] | null>(null)
 
   useEffect(() => {
+    if (!autoSize) return
     if (!sectionRef.current) return
 
     const sectionElement = sectionRef.current
@@ -100,6 +103,7 @@ export default function SectionRoot({ children, ...rest }: Props) {
     )
 
     sectionElement.style.height = `${total}px`
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
@@ -120,8 +124,8 @@ export default function SectionRoot({ children, ...rest }: Props) {
   return (
     <section
       ref={sectionRef}
-      {...rest}
       className={twMerge('rounded-md bg-black p-6 ', rest.className)}
+      {...rest}
     >
       {children}
     </section>
