@@ -7,6 +7,7 @@ import { AiOutlineLoading } from 'react-icons/ai'
 
 import { auth } from '@/libs/firebase'
 import { setCookie } from '@/helpers/cookies'
+import { firebaseConfig } from '@/config/firebase-config'
 
 export default function ButtonLoginGithub() {
   const router = useRouter()
@@ -23,6 +24,14 @@ export default function ButtonLoginGithub() {
     setIsLoading(true)
 
     const { user } = await signInWithPopup(auth(), provider)
+
+    if (firebaseConfig.emailProprietarioAuth !== user.email) {
+      alert('Esse não é o usuário proprietário do aplicativo')
+      setIsLoading(false)
+      // router.refresh()
+      return
+    }
+
     const tempoExpiracaoEmDias = 7
     setCookie('user', JSON.stringify({ name: user.displayName, avatar: user.photoURL }), {
       expires: tempoExpiracaoEmDias,
