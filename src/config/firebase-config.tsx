@@ -7,4 +7,5 @@ export const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID ?? '',
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID ?? '',
   keySiteReCAPTCHAEnterprise: process.env.NEXT_PUBLIC_FIREBASE_KEY_SITE_RECAPTCHA_ENTERPRISE ?? '',
+  emailProprietarioAuth: process.env.NEXT_PUBLIC_EMAIL_PROPRIETARIO_AUTH ?? '',
 }
