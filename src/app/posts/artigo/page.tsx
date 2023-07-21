@@ -20,7 +20,7 @@ interface Props {
 // }
 
 // TODO Remover em futuras actualizações, quando eu já não usar exportação estática
-// export const dynamic = 'force-static'
+export const dynamic = 'force-static'
 
 export default async function Artigo({ searchParams }: Props) {
   if (!searchParams.s) return <NotFound />
