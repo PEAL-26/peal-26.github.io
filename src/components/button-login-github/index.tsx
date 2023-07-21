@@ -28,7 +28,6 @@ export default function ButtonLoginGithub() {
     if (firebaseConfig.emailProprietarioAuth !== user.email) {
       alert('Esse não é o usuário proprietário do aplicativo')
       setIsLoading(false)
-      // router.refresh()
       return
     }
 
