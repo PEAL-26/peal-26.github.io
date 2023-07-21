@@ -12,8 +12,8 @@ interface Props {
 export async function generateMetadata({ searchParams }: Props) {
   if (!searchParams.s) notFound()
   const post = await getBySlug(searchParams.s)
-
-  if (!post) notFound()
+  console.log('generateMetadata', post)
+  if (!post) return <NotFound />
 
   return { title: post.title }
 }
@@ -22,10 +22,11 @@ export async function generateMetadata({ searchParams }: Props) {
 export const dynamic = 'force-static'
 
 export default async function Artigo({ searchParams }: Props) {
-  if (!searchParams.s) notFound()
-  const post = await getBySlug(searchParams.s)
+  if (!searchParams.s) return <NotFound />
 
-  if (!post) notFound()
+  const post = await getBySlug(searchParams.s)
+  console.log('Artigo', post)
+  if (!post) return <NotFound />
 
   return (
     <div>
