@@ -13,10 +13,12 @@ import {
   Timestamp,
   serverTimestamp,
 } from 'firebase/firestore'
-
+import validator from 'validator'
 import { db } from '@/libs/firebase'
 import { PostProps } from '@/@types/post-type'
 import { firebaseTimestampToDate } from '@/helpers/date-converter'
+
+const { isEmpty } = validator
 
 export async function getById(id: string): Promise<PostProps | null> {
   const postDoc = doc(db(), 'posts', id)
@@ -39,6 +41,8 @@ export async function getById(id: string): Promise<PostProps | null> {
 }
 
 export async function getBySlug(slug: string): Promise<PostProps | null> {
+  if (isEmpty(slug)) return null
+
   const q = query(collection(db(), 'posts'), where('slug', '==', slug))
   const querySnapshot = await getDocs(q)
 

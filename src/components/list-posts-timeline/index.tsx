@@ -9,7 +9,7 @@ import Timeline from '../timeline'
 import { PostProps } from '@/@types/post-type'
 import { getAll } from '@/data/posts'
 
-export default function ListPostsTimeline() {
+export default async function ListPostsTimeline() {
   const [loading, setLoading] = useState(true)
   const [posts, setPosts] = useState<PostProps[]>([])
 

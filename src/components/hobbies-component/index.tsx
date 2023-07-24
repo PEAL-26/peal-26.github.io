@@ -1,15 +1,14 @@
 'use client'
-
 import { useState, useEffect } from 'react'
 
 import Loading from '../loading'
 import { Cartaz } from '../cartaz'
 import { Section } from '../section'
-
-import { hobbiesData } from './data'
+import { Livro, LivroItemType } from '../livro'
 import { CartazItemType } from '../cartaz/types'
 import { Music, MusicItemDataType } from '../music-component'
-import { Livro, LivroItemType } from '../livro'
+
+import { hobbiesData } from './data'
 
 export default function HobbiesComponent() {
   const [loading, setLoading] = useState(true)
