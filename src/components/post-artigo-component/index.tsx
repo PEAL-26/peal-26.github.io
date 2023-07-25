@@ -10,6 +10,7 @@ import ArtigoContent from '../post-artigo-content'
 import Loading from '../loading'
 
 export default function PostArtigoComponent() {
+  const [pageTitle, setPageTitle] = useState('PEAL')
   const [post, setPost] = useState<PostProps | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const searchParams = useSearchParams()
@@ -20,13 +21,18 @@ export default function PostArtigoComponent() {
     const artigo = await getBySlug(search || '')
 
     setPost(artigo)
+    setPageTitle(`${artigo?.title || ''} | PEAL`)
     setIsLoading(false)
   }, [searchParams])
 
   useEffect(() => {
     getArtigo()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useEffect(() => {
+    document.title = pageTitle
+  }, [pageTitle])
 
   if (isLoading) return <Loading />
 
