@@ -37,7 +37,7 @@ export default function CartazContainer({ children, visible = true, ...rest }: P
       <div
         ref={divMainRef}
         {...rest}
-        className="absolute flex w-full gap-3 overflow-x-hidden rounded-md"
+        className="absolute flex max-w-full gap-3 overflow-x-auto rounded-md"
       >
         {children}
       </div>
