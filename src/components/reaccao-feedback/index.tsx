@@ -36,7 +36,8 @@ export default function ReaccaoFeedback(props: Props) {
 
   useEffect(() => {
     handleChangeStateEmoji(true, reaccao)
-  }, [handleChangeStateEmoji, reaccao])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reaccao])
 
   return (
     <div className="flex space-x-1 pl-0 sm:pl-2">
