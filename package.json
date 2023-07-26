@@ -2,7 +2,7 @@
   "name": "peal",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://peal-26.github.io/peal",
+  "homepage": "https://peal-26.github.io/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

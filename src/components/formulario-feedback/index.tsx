@@ -72,7 +72,6 @@ export default function FormularioFeedback() {
             className="h-full w-full resize-none overflow-y-auto rounded-md border border-white/20 bg-gray/50 p-2 text-sm text-white placeholder-white/20 focus:border-white/70 focus:outline-0 focus:ring-0 "
             placeholder="Escreva a sua mensagem..."
             required
-            // defaultValue={message}
             value={message}
             onChange={(event) => setMessage(event.target.value)}
           />
