@@ -1,6 +1,6 @@
 'use client'
 
-import { HTMLAttributes, useEffect, useState } from 'react'
+import { HTMLAttributes } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 interface Props extends HTMLAttributes<HTMLDivElement> {}

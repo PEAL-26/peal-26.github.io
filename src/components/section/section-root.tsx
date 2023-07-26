@@ -4,6 +4,7 @@ import { twMerge } from 'tailwind-merge'
 interface Props extends HTMLAttributes<HTMLElement> {
   autoSize?: boolean
   children?: ReactNode
+  tab?: number
 }
 
 const getHeight = (element: HTMLElement | null): number => {
@@ -54,25 +55,9 @@ const getTotal = (...numbers: number[]) => {
   return total
 }
 
-// Função auxiliar para comparar os arrays de filhos
-const areChildrenEqual = (children: ReactNode[], childrenCompare: ReactNode[]) => {
-  if (children.length !== childrenCompare.length) {
-    return false
-  }
-
-  for (let i = 0; i < children.length; i++) {
-    if (children[i] !== childrenCompare[i]) {
-      return false
-    }
-  }
-
-  return true
-}
-
 export default function SectionRoot(props: Props) {
-  const { children, autoSize = false, ...rest } = props
+  const { children, autoSize = false, tab = 0, ...rest } = props
   const sectionRef = useRef<HTMLElement>(null)
-  const previousChildrenRef = useRef<ReactNode[] | null>(null)
 
   useEffect(() => {
     if (!autoSize) return
@@ -103,23 +88,9 @@ export default function SectionRoot(props: Props) {
     )
 
     sectionElement.style.height = `${total}px`
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
-  useEffect(() => {
-    const currentChildren = Children.toArray(children)
-    const previousChildren = previousChildrenRef.current
-
-    // Verifique se o conteúdo dos filhos mudou
-    if (previousChildren && !areChildrenEqual(currentChildren, previousChildren)) {
-      // O conteúdo dos filhos foi alterado!
-      console.log('O conteúdo dos filhos foi alterado:', currentChildren)
-      // Faça o que for necessário com o conteúdo modificado dos filhos
-    }
-
-    // Atualize a referência para o conteúdo dos filhos atual
-    previousChildrenRef.current = currentChildren
-  }, [children])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tab])
 
   return (
     <section
