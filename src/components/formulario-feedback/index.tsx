@@ -78,7 +78,10 @@ export default function FormularioFeedback() {
           />
         </div>
         <div className="flex items-center justify-between rounded-b-md border-t border-white/20 bg-black px-3 py-2">
-          <ReaccaoFeedback reaccaoPadrao={classification} onReaccao={setClassification} />
+          <ReaccaoFeedback
+            reaccao={classification}
+            onReaccao={setClassification}
+          />
           <button
             type="submit"
             data-loading={isLoading}
@@ -86,10 +89,7 @@ export default function FormularioFeedback() {
             className="inline-flex items-center rounded-lg bg-white px-4 py-2.5 text-center text-xs font-medium text-black focus:ring-4 focus:ring-white/80 data-[loading=true]:cursor-not-allowed data-[loading=false]:hover:bg-white/70 max-sm:ml-5"
           >
             {isLoading && (
-              <>
-                <AiOutlineLoading className="mr-2 h-5 w-5 animate-spin fill-gray text-gray " />
-                {' Enviando'}
-              </>
+              <AiOutlineLoading className="h-3 w-3 animate-spin fill-gray text-gray " />
             )}
             {!isLoading && <>Enviar</>}
           </button>

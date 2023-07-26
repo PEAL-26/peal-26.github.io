@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import ReaccaoEmoji from '../reaccao-emoji'
 
 export enum Reaccao {
@@ -11,24 +11,32 @@ export enum Reaccao {
 interface Props {
   onReaccao(reaccao: Reaccao): void
   reaccaoPadrao?: Reaccao
+  reaccao?: Reaccao
 }
 
 export default function ReaccaoFeedback(props: Props) {
-  const { onReaccao, reaccaoPadrao = Reaccao.MUITO_BOM } = props
+  const { onReaccao, reaccaoPadrao = Reaccao.MUITO_BOM, reaccao = Reaccao.MUITO_BOM } = props
   const [activeStates, setActiveStates] = useState<boolean[]>([false, false, false, false])
 
-  const handleChangeStateEmoji = (state: boolean, index: number) => {
-    setActiveStates(
-      activeStates.map((_, indexCurrent) =>
-        indexCurrent === index && state ? (onReaccao && onReaccao(index), true) : false,
-      ),
-    )
-  }
+  const handleChangeStateEmoji = useCallback(
+    (state: boolean, index: number) => {
+      setActiveStates(
+        activeStates.map((_, indexCurrent) =>
+          indexCurrent === index && state ? (onReaccao && onReaccao(index), true) : false,
+        ),
+      )
+    },
+    [activeStates, onReaccao],
+  )
 
   useEffect(() => {
     handleChangeStateEmoji(true, reaccaoPadrao)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useEffect(() => {
+    handleChangeStateEmoji(true, reaccao)
+  }, [handleChangeStateEmoji, reaccao])
 
   return (
     <div className="flex space-x-1 pl-0 sm:pl-2">
