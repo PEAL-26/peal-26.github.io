@@ -8,7 +8,7 @@ interface Props {
   children: ReactNode
 }
 
-export function CartazItemImageTippy(props: Props) {
+export function TippyCustom(props: Props) {
   const { title, description, children } = props
 
   return (
@@ -30,4 +30,3 @@ export function CartazItemImageTippy(props: Props) {
     </Tippy>
   )
 }
-

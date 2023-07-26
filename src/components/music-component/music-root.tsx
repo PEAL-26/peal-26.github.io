@@ -8,5 +8,5 @@ interface Props {
 export default function MusicRoot(props: Props) {
   const { children, visible } = props
 
-  return <div className="grid grid-cols-5 gap-5">{children}</div>
+  return <div className="w-full flex-1 max-md:grid">{children}</div>
 }

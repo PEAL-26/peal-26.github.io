@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 
 import { CartazItemType } from './types'
 import ImageLoadingSkeleton from '../image-loading-skeleton'
-import { CartazItemImageTippy } from './cartaz-item-image-tippy'
+import { TippyCustom } from '@/helpers/tippy-custom'
 
 interface CartazItemProps {
   data: CartazItemType
@@ -20,8 +20,8 @@ export default function CartazItem(props: CartazItemProps) {
   }, [])
 
   return (
-    <div className="flex w-40 flex-col gap-3 ">
-      <CartazItemImageTippy title={data.title} description={data.description}>
+    <div className="flex w-40 flex-col gap-3">
+      <TippyCustom title={data.title} description={data.description}>
         <div className="relative h-56 w-full cursor-pointer rounded-md border border-white/20 lg:w-40">
           {isLoadingImage && !data.image && <ImageLoadingSkeleton />}
           {!isLoadingImage && data.image && (
@@ -34,7 +34,7 @@ export default function CartazItem(props: CartazItemProps) {
             />
           )}
         </div>
-      </CartazItemImageTippy>
+      </TippyCustom>
       <div className="flex flex-col gap-1 text-center">
         <p className="line-clamp-2 text-lg font-bold">{data.title}</p>
         <span className={`text-[10px] font-normal uppercase ${colorState}`}>{data.state}</span>

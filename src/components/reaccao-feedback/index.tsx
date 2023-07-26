@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ReaccaoEmoji from '../reaccao-emoji'
 
 export enum Reaccao {
@@ -10,10 +10,13 @@ export enum Reaccao {
 
 interface Props {
   onReaccao(reaccao: Reaccao): void
+  reaccaoPadrao?: Reaccao
 }
 
-export default function ReaccaoFeedback({ onReaccao }: Props) {
+export default function ReaccaoFeedback(props: Props) {
+  const { onReaccao, reaccaoPadrao = Reaccao.MUITO_BOM } = props
   const [activeStates, setActiveStates] = useState<boolean[]>([false, false, false, false])
+
   const handleChangeStateEmoji = (state: boolean, index: number) => {
     setActiveStates(
       activeStates.map((_, indexCurrent) =>
@@ -21,6 +24,11 @@ export default function ReaccaoFeedback({ onReaccao }: Props) {
       ),
     )
   }
+
+  useEffect(() => {
+    handleChangeStateEmoji(true, reaccaoPadrao)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div className="flex space-x-1 pl-0 sm:pl-2">

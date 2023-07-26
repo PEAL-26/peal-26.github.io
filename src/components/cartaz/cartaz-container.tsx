@@ -34,12 +34,8 @@ export default function CartazContainer({ children, visible = true, ...rest }: P
 
   return (
     <>
-      <div
-        ref={divMainRef}
-        {...rest}
-        className="absolute flex max-w-full gap-3 overflow-x-auto rounded-md"
-      >
-        {children}
+      <div ref={divMainRef} {...rest} className="absolute flex w-full overflow-hidden rounded-md">
+        <div className="flex flex-1 gap-3 ">{children}</div>
       </div>
       {scrollHeight > 0 && (
         <>
