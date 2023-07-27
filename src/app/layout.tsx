@@ -5,6 +5,7 @@ import Sidebar from '@/components/sidebar'
 import Footer from '@/components/footer'
 import ButtonMenu from '@/components/button-menu'
 import { Metadata } from 'next'
+import Head from './head'
 
 const roboto = RobotoFlex({ subsets: ['latin'] })
 
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-pt">
+      <Head />
       <body className={`${roboto.className} flex flex-1 sm:relative`}>
         <Sidebar />
         <div className="ml-0 flex-1 p-7 transition-all lg:ml-[290px]">

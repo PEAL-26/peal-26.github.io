@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { BsArrowRightShort } from 'react-icons/bs'
 
 import { PostProps } from '@/@types/post-type'
+import { PostContainer } from './post-container'
 
 interface Props {
   data: PostProps
@@ -11,10 +12,7 @@ export default function Post({ data }: Props) {
   const link = `/posts/artigo?s=${data.slug}`
 
   return (
-    <Link
-      href={link}
-      className="group flex w-full cursor-pointer flex-col justify-between gap-4 rounded-md bg-black p-8 transition-all hover:scale-105"
-    >
+    <PostContainer url={link}>
       <div>
         <time className="mb-1 text-xs font-normal leading-none text-neutral-500">
           {data.date?.toDateString() ?? ''}
@@ -29,6 +27,6 @@ export default function Post({ data }: Props) {
         Ler artigo
         <BsArrowRightShort size={20} />
       </Link>
-    </Link>
+    </PostContainer>
   )
 }
