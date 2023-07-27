@@ -18,9 +18,6 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-pt">
-      <head>
-        <meta http-equiv="Permissions-Policy" content="interest-cohort=()" />
-      </head>
       <body className={`${roboto.className} flex flex-1 sm:relative`}>
         <Sidebar />
         <div className="ml-0 flex-1 p-7 transition-all lg:ml-[290px]">
