@@ -14,7 +14,7 @@ export default function Logout() {
     event.preventDefault()
     await signOut(auth())
     removeCookie('user', { path: '/admin' })
-    router.push('/admin')
+    router.refresh()
   }
 
   return (

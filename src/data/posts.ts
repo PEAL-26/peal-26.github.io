@@ -13,8 +13,9 @@ import {
   Timestamp,
   serverTimestamp,
 } from 'firebase/firestore'
+import * as firebase from 'firebase/app'
 import validator from 'validator'
-import { db } from '@/libs/firebase'
+import { auth, db } from '@/libs/firebase'
 import { PostProps } from '@/@types/post-type'
 import { firebaseTimestampToDate } from '@/helpers/date-converter'
 
@@ -116,6 +117,9 @@ export async function update(id: string, data: PostProps) {
 }
 
 export async function remove(id: string) {
+  const post = await getById(id)
+  if (!post) throw new Error('Post não existe.')
+
   const postDoc = doc(db(), 'posts', id)
   await deleteDoc(postDoc)
 }

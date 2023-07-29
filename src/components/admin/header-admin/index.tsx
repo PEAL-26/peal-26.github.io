@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 
-import Header from '../header'
 import HeaderAdminTitle from '../header-admin-title'
+import Header from '@/components/header'
 
 interface Props {
   children?: ReactNode
