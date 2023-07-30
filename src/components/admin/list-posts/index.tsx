@@ -15,10 +15,14 @@ export default function ListPosts(props: Props) {
   const [posts, setPosts] = useState<PostProps[]>([])
 
   const getPosts = async () => {
-    setIsLoading(true)
-    const response = await getAll()
-    setPosts(response)
-    setIsLoading(false)
+    try {
+      setIsLoading(true)
+      const response = await getAll()
+      setPosts(response)
+    } catch (error) {
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   useEffect(() => {

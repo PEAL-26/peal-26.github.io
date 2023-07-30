@@ -1,4 +1,4 @@
-const colors = require('tailwindcss/colors')
+const daisyui = require('daisyui')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -21,5 +21,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [daisyui],
 }

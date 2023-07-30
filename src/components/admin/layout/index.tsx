@@ -3,7 +3,7 @@
 import Avatar from '@/components/avatar'
 import HeaderAdmin from '@/components/admin/header-admin'
 import Unauthenticated from '@/components/unauthenticated'
-import ButtonLoginGithub from '@/components/button-login-github'
+import ButtonLoginGithub from '@/components/admin/button-login-github'
 
 import { getCookie } from '@/helpers/cookies'
 import { useEffect, useState } from 'react'

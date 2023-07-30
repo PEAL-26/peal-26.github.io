@@ -20,10 +20,10 @@ export default function BottomNavigationAdmin() {
   }
 
   return (
-    <div className="fixed bottom-0 left-0 z-40 w-full lg:p-0 lg:pl-[290px] ">
+    <div className="fixed bottom-0 left-0 z-40 w-full lg:p-0 lg:pl-[290px]">
       <div className="flex w-full justify-center">
         <div
-          className="mx-auto my-2 grid max-w-xs grid-cols-3 gap-1 rounded-lg bg-black p-2"
+          className="mx-auto my-2 grid max-w-xs grid-cols-3 gap-1 rounded-lg border border-gray  bg-black p-2 shadow"
           role="group"
         >
           <Link href="/admin/posts" className={classNamesState('/admin/posts')}>

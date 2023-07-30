@@ -7,7 +7,7 @@ import { BiEdit, BiTrashAlt, BiShareAlt } from 'react-icons/bi'
 import { PostProps } from '@/@types/post-type'
 import { remove as RemovePost } from '@/data/posts'
 import Modal, { Body as ModalBody, Footer as ModalFooter } from '@/components/modal'
-import { auth } from '@/libs/firebase'
+import { ErrorPage } from '@/components/error-page'
 
 interface PostAminProps {
   data: PostProps
@@ -16,8 +16,8 @@ interface PostAminProps {
 export function PostAdmin({ data }: PostAminProps) {
   const router = useRouter()
   const url = `/admin/posts/register?id=${data.id}`
-  const [isOpenModal, setIsOpenModal] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [isOpenModal, setIsOpenModal] = useState(false)
 
   const closeModal = () => setIsOpenModal(false)
   const openModal = () => setIsOpenModal(true)
@@ -26,13 +26,13 @@ export function PostAdmin({ data }: PostAminProps) {
     if (data.id) {
       try {
         setIsLoading(true)
-        auth()
         await RemovePost(data.id)
 
         router.refresh()
         closeModal()
       } catch (error) {
         console.error(error)
+      } finally {
         setIsLoading(false)
       }
     }

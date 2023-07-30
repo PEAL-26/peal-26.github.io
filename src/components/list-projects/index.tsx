@@ -2,15 +2,15 @@
 
 import { useEffect, useState } from 'react'
 
-import { ProjectoProps } from '@/@types/projecto-type'
-import { getAll } from '@/data/projectos'
+import { ProjectProps } from '@/@types/project-type'
+import { getAll } from '@/data/projects'
 import Projecto from '../projecto'
 import Loading from '../loading'
 import Empty from '../empty'
 
 export default function ListProjects() {
   const [loading, setLoading] = useState(true)
-  const [projectos, setProjectos] = useState<ProjectoProps[]>([])
+  const [projectos, setProjectos] = useState<ProjectProps[]>([])
 
   useEffect(() => {
     ;(async () => {

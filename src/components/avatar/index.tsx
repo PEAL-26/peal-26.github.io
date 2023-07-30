@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Tippy from '@tippyjs/react'
 
-import Logout from '../logout'
+import Logout from '../admin/logout'
 
 interface Props {
   name: string

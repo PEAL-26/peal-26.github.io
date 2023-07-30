@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation'
 import {
   signInWithPopup,
   GithubAuthProvider,
-  setPersistence,
   browserLocalPersistence,
 } from 'firebase/auth'
 
@@ -23,14 +22,14 @@ export default function ButtonLoginGithub() {
     if (isLoading) return
     setIsLoading(true)
 
-    const _auth = auth()
+    // const _auth = auth()
     const provider = new GithubAuthProvider()
     provider.setCustomParameters({
       allow_signup: 'false',
     })
 
-    await setPersistence(_auth, browserLocalPersistence)
-    const { user } = await signInWithPopup(_auth, provider)
+    await auth.setPersistence(browserLocalPersistence)
+    const { user } = await signInWithPopup(auth, provider)
 
     if (firebaseConfig.emailProprietarioAuth !== user.email) {
       alert('Esse não é o usuário proprietário do aplicativo')

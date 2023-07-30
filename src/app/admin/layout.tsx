@@ -1,5 +1,5 @@
 import AdminLayoutComponent from '@/components/admin/layout'
-import BottomNavigationAdmin from '@/components/bottom-navigation-admin'
+import BottomNavigationAdmin from '@/components/admin/bottom-navigation-admin'
 
 interface Props {
   children: React.ReactNode

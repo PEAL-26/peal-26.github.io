@@ -1,4 +1,4 @@
-import Register from '@/components/admin/register/indesx'
+import Register from '@/components/admin/register-post/indesx'
 
 // export const metadata = {
 //   title: 'Novo post | Admin',

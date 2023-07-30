@@ -8,8 +8,9 @@ import {
   BsFillEmojiHeartEyesFill,
 } from 'react-icons/bs'
 
+export type EmojiType = 'muito-mau' | 'mau' | 'bom' | 'muito-bom'
 interface Props {
-  emoji: 'muito-mau' | 'mau' | 'bom' | 'muito-bom'
+  emoji: EmojiType
   activeState?: boolean
   onChangeActiveState?(state: boolean): void
 }
@@ -60,7 +61,7 @@ export default function ReaccaoEmoji({ emoji, activeState = false, onChangeActiv
       type="button"
       onClick={handleChangeActive}
       style={styles}
-      className={`inline-flex cursor-pointer justify-center rounded-md p-2 transition-all`}
+      className={`inline-flex cursor-pointer items-center justify-center rounded-md p-2 transition-all`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

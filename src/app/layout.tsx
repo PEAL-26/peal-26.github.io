@@ -1,4 +1,4 @@
-import '../styles/globals.css'
+import '@/styles/globals.css'
 import { Roboto_Flex as RobotoFlex } from 'next/font/google'
 
 import Sidebar from '@/components/sidebar'

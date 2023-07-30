@@ -1,7 +1,7 @@
-export type ProjectoProps = {
+export type ProjectProps = {
   id?: string
   name: string
   description?: string
   link?: string
-  imagem?: string
+  image?: string
 }
