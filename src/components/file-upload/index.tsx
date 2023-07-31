@@ -1,25 +1,38 @@
 'use client'
-import React, { useCallback, useState, forwardRef, HTMLAttributes, useEffect } from 'react'
+import React, {
+  useCallback,
+  useState,
+  forwardRef,
+  HTMLAttributes,
+  useEffect,
+  HTMLProps,
+} from 'react'
 import { useDropzone, Accept } from 'react-dropzone'
 import { FileUploadPreview } from './file-upload-preview'
 import { FileUploadEmpty } from './file-upload-empty'
 
-interface FileUploadProps {
-  onChange?(files: File[]): void
+interface FileUploadProps extends HTMLProps<HTMLInputElement> {
+  onChangeFile?(listFiles: File[]): void
+  files?: File[]
+}
+
+const acceptedFileTypes = {
+  'image/png': [],
+  'image/jpeg': [],
 }
 
 export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>((props, ref) => {
-  const { onChange } = props
-  const [files, setFiles] = useState<File[]>([])
+  const { onChangeFile, files } = props
+  const [listFiles, setListFiles] = useState<File[]>([])
 
   const onDrop = useCallback((acceptedFiles: any, fileRejections: any) => {
-    setFiles([])
+    setListFiles([])
 
     acceptedFiles.forEach((file: any) => {
       const reader = new FileReader()
       reader.readAsArrayBuffer(file)
 
-      setFiles((prevFiles) => {
+      setListFiles((prevFiles) => {
         return [
           ...prevFiles,
           Object.assign(file, {
@@ -31,24 +44,29 @@ export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>((props, 
   }, [])
 
   const onRemove = (indexToRemove: number = 0) => {
-    const updatedFiles = files.slice()
+    const updatedFiles = listFiles.slice()
     updatedFiles.splice(indexToRemove, 1)
-    setFiles(updatedFiles)
+    setListFiles(updatedFiles)
   }
 
   const CINCO_MB = 5 * 1024 * 1024
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: acceptedFileTypes,
     onDrop,
     multiple: false,
     maxFiles: 1,
     maxSize: CINCO_MB,
   })
 
-  const fileAdded = files.length > 0
+  const fileAdded = listFiles.length > 0
 
   useEffect(() => {
-    onChange && onChange(files)
+    onChangeFile && onChangeFile(listFiles)
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [listFiles])
+
+  useEffect(() => {
+    files && setListFiles(files)
   }, [files])
 
   return (
@@ -60,7 +78,7 @@ export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>((props, 
         border-gray-300 data-[added-file=true]:h-[25rem] `}
     >
       <input {...getInputProps()} ref={ref} />
-      {fileAdded && <FileUploadPreview files={files} onRemove={onRemove} />}
+      {fileAdded && <FileUploadPreview files={listFiles} onRemove={onRemove} />}
       {!fileAdded && <FileUploadEmpty />}
     </div>
   )

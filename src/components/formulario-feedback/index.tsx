@@ -1,8 +1,9 @@
 'use client'
 import { FormEvent, useEffect, useState } from 'react'
+import { AiFillCheckCircle, AiOutlineLoading } from 'react-icons/ai'
+
 import ReaccaoFeedback, { Reaccao } from '../reaccao-feedback'
 import { enviar } from '@/data/feedbacks'
-import { AiFillCheckCircle, AiOutlineLoading } from 'react-icons/ai'
 
 export default function FormularioFeedback() {
   const [isLoading, setIsLoading] = useState(false)

@@ -1,4 +1,6 @@
+import { CircleProgressBar } from '@/components/circle-progress-bar'
 import Modal, { Body as ModalBody, Footer as ModalFooter } from '@/components/modal'
+import { AiFillCheckCircle } from 'react-icons/ai'
 
 interface ModalSaveProps {
   progress: number
@@ -14,19 +16,9 @@ export function ModalSave(props: ModalSaveProps) {
 
   return (
     <Modal isOpen={isOpen} onHide={onHide} block={isBlocked}>
-      <ModalBody className="mb-4 mt-8 flex flex-col justify-center rounded-md p-2 text-center max-md:h-full max-md:w-full md:min-w-[300px]">
-        {/* TODO Procurar como fazer progressbar melhor */}
-        <div
-          className="border-1 radial-progress border-white bg-white text-primary"
-          style={
-            {
-              // '--value': progress,
-              // '--thickness': '4px',
-            }
-          }
-        >
-          {`${progress}%`}
-        </div>
+      <ModalBody className="flex flex-col justify-center rounded-md p-8 text-center">
+        {progress == 100 && success && <AiFillCheckCircle className="text-primary" size={50} />}
+        {!(progress == 100 && success) && <CircleProgressBar percentage={progress} />}
       </ModalBody>
     </Modal>
   )

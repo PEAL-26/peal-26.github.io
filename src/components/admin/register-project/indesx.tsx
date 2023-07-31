@@ -1,24 +1,23 @@
 'use client'
-import { z } from 'zod'
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 
-import { ProjectProps } from '@/@types/project-type'
-import { insert, update } from '@/data/projects'
-import { FileUpload } from '@/components/file-upload'
 import { storage } from '@/libs/firebase'
-import { FormRegisterProject } from './form'
-import { ModalSave } from './modal-save'
-import { Console } from 'console'
+import { insert, update } from '@/data/projects'
 
-const Project = z.object({
-  id: z.string(),
-  name: z.string().max(150),
-  description: z.string(),
-  link: z.string().url(),
-  image: z.string(),
-})
+import { ModalSave } from './modal-save'
+import { FormRegisterProject, InputsForm, TypeSubmit } from './form'
+
+function getFileExtension(fileName: string) {
+  const extensionIndex = fileName.lastIndexOf('.')
+  const extension = fileName.substring(extensionIndex)
+  return extension
+}
+
+const NOVENTA_POR_CENTO = 90
+const NOVENTA_E_CINCO_POR_CENTO = 95
+const CEM_POR_CENTO = 100
 
 export default function RegisterProject() {
   const searchParams = useSearchParams()
@@ -26,44 +25,54 @@ export default function RegisterProject() {
 
   const [success, setSuccess] = useState(false)
   const [isOpenModal, setIsOpenModal] = useState(false)
-  const [progress, setProgress] = useState<number>(0)
+  const [progressUpload, setProgressUpload] = useState(0)
+  const [progressProcess, setProgressProcess] = useState(0)
   const [file, setFile] = useState<File | null>(null)
   const [fileUrl, setFileUrl] = useState<string | null>(null)
+  const [formData, setFormData] = useState<InputsForm>({} as InputsForm)
+  const [resetForm, setResetForm] = useState(false)
 
   const save = async () => {
-    setSuccess(false)
     try {
+      if (id) {
+        await update(id, formData)
+      } else {
+        await insert(formData)
+      }
+
+      setProgressProcess((progressUpload * CEM_POR_CENTO) / CEM_POR_CENTO)
       setSuccess(true)
+      setResetForm(true)
     } catch (error) {
       console.error(error)
     }
   }
 
-  const startUpload = (e: FormEvent) => {
-    e.preventDefault()
+  const startUpload: TypeSubmit = (data: InputsForm) => {
+    setFormData(data)
+    setIsOpenModal(true)
+    setSuccess(false)
+    setProgressUpload(0)
+    setProgressProcess(0)
 
     if (file) {
-      setIsOpenModal(true)
-      setSuccess(false)
-      setProgress(0)
-
-      const storageRef = ref(storage(), `projects/${file.name}`)
+      const extension = getFileExtension(file.name)
+      const name = self.crypto.randomUUID()
+      const storageRef = ref(storage(), `projects/${name}${extension}`)
       const uploadTask = uploadBytesResumable(storageRef, file)
 
       uploadTask.on(
         'state_changed',
         (snapshot) => {
-          const uploadProgress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          setProgress(parseInt(uploadProgress.toFixed(0)))
+          const uploadProgressUpload = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          setProgressUpload(parseInt(uploadProgressUpload.toFixed(0)))
         },
         (error) => {
           console.error(error)
         },
         () => {
-          // Upload completo, obter a URL do arquivo
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            console.log(downloadURL)
-            setFileUrl(downloadURL)
+          getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+            setFileUrl(url)
           })
         },
       )
@@ -72,7 +81,6 @@ export default function RegisterProject() {
 
   const handleChange = (files: File[]) => {
     const selectedFile = files?.[0]
-    console.log(selectedFile)
     if (selectedFile) {
       setFile(selectedFile)
     }
@@ -84,18 +92,28 @@ export default function RegisterProject() {
   }, [searchParams])
 
   useEffect(() => {
-    if (progress === 100) {
+    if (progressUpload === CEM_POR_CENTO && fileUrl) {
+      setProgressProcess((progressUpload * NOVENTA_E_CINCO_POR_CENTO) / CEM_POR_CENTO)
+      setFormData({ ...formData, image: fileUrl })
       save()
+    } else {
+      setProgressProcess((progressUpload * NOVENTA_POR_CENTO) / CEM_POR_CENTO)
     }
-  }, [progress])
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [progressUpload, fileUrl])
 
   return (
     <div className="flex w-full flex-col gap-2">
-      <FormRegisterProject onSubmit={startUpload} onChangeImage={handleChange} />
+      <FormRegisterProject
+        onSubmit={startUpload}
+        onChangeImage={handleChange}
+        restForm={resetForm}
+      />
       <ModalSave
         isOpen={isOpenModal}
         onHide={setIsOpenModal}
-        progress={progress}
+        progress={progressProcess}
         success={success}
       />
     </div>

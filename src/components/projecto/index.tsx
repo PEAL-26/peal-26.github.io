@@ -11,19 +11,22 @@ interface Props {
 export default function Projecto({ data }: Props) {
   return (
     <div className="group flex h-[400px] w-full cursor-pointer flex-col justify-between rounded-md bg-black p-8 transition-all hover:scale-105">
-      <div>
-        {data.image && (
-          <Image
-            src={data.image}
-            alt="user"
-            width={100}
-            height={100}
-            className="mb-4 rounded-full border-4 border-gray object-cover"
-          />
-        )}
+      <div className="flex flex-col justify-start gap-2">
+        <div className="relative h-28 w-28 rounded-full border-4 border-gray ">
+          {data.image && (
+            <Image
+              src={data.image}
+              alt={data.name}
+              fill
+              className="rounded-full object-cover"
+            />
+          )}
+        </div>
 
-        <h3 className="mb-1 text-lg font-bold text-white">{data.name}</h3>
-        <p className="mb-4 line-clamp-6 font-normal text-white/75">{data.description}</p>
+        <div>
+          <h3 className="mb-1 text-lg font-bold text-white">{data.name}</h3>
+          <p className="mb-4 line-clamp-6 font-normal text-white/75">{data.description}</p>
+        </div>
       </div>
 
       <Link

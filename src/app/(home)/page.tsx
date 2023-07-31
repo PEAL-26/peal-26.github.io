@@ -1,3 +1,4 @@
+import { CircleProgressBar } from '@/components/circle-progress-bar'
 import ListPostsHome from '@/components/list-posts-home'
 import LogoHome from '@/components/logo-home'
 
@@ -14,6 +15,7 @@ export default function Home() {
         <LogoHome />
         <span className="text-center text-3xl font-bold">Pedro Edilásio Araújo Lopes</span>
       </div>
+      <CircleProgressBar />
       <span className="mb-2 text-xl font-bold text-white">Últimos artigos</span>
       <ListPostsHome />
     </div>
