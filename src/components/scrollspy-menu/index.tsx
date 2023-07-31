@@ -79,7 +79,7 @@ export default function ScrollspyMenu({ menus, current, sectionRefs, isSticked }
         current === OCULTO ? 'max-sm:hidden' : ''
       } ${containerMenu} ${visibleMenu} `}
     >
-      <ul className="md:flex md:flex-col md:gap-3 text-white">
+      <ul className="text-white md:flex md:flex-col md:gap-3">
         {menus.map(({ id, titulo }, index) => (
           <li
             key={index}

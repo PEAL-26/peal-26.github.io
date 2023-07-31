@@ -23,7 +23,7 @@ const { isEmpty } = validator
 export async function getAll(): Promise<FeedbackProps[]> {
   const feedbacks: FeedbackProps[] = []
   const feedbacksCollection = collection(db(), 'feedbacks')
-  const feedbacksQuery = query(feedbacksCollection, orderBy('date', 'desc'))
+  const feedbacksQuery = query(feedbacksCollection, orderBy('created_at', 'desc'))
   const querySnapshot = await getDocs(feedbacksQuery)
 
   querySnapshot.forEach((doc) => {

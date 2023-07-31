@@ -13,7 +13,7 @@ export default function useSticked() {
         const { scrollTop } = document.documentElement
         const position = offsetTop - scrollTop
 
-          setIsSticked(position <= 0)
+        setIsSticked(position <= 0)
       }
     }
 

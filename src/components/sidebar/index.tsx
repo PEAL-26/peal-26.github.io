@@ -8,7 +8,6 @@ import { FaFacebookF, FaTwitter, FaLinkedinIn } from 'react-icons/fa'
 import { AiFillInstagram } from 'react-icons/ai'
 import { FiGithub } from 'react-icons/fi'
 
-
 export default function Sidebar() {
   const router = useRouter()
   const pathname = usePathname()
@@ -102,7 +101,9 @@ export default function Sidebar() {
           <Link href="/projectos">Projectos</Link>
         </li>
         <li
-          className={`click-element cursor-pointer rounded-md px-3 py-4 text-xl ${isActiveLink('/posts')}`}
+          className={`click-element cursor-pointer rounded-md px-3 py-4 text-xl ${isActiveLink(
+            '/posts',
+          )}`}
           onClick={() => handleLinkClick('/posts')}
         >
           <Link href="/posts">Posts</Link>

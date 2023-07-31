@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { FaPlus } from 'react-icons/fa'
 
-import ListPosts from '@/components/list-posts'
+import ListProjects from '@/components/admin/list-projects'
 
 export const metadata = {
   title: 'Listagem de projectos | Admin',
@@ -18,7 +18,7 @@ export default function ProjectosAdminPage() {
         <FaPlus className="-ml-1 mr-2 h-5 w-5" />
         Novo projecto
       </Link>
-      <ListPosts />
+      <ListProjects />
     </div>
   )
 }

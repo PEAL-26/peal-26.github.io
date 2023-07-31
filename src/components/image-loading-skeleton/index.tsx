@@ -1,6 +1,6 @@
 export default function ImageLoadingSkeleton() {
   return (
-    <div role="status" className="flex animate-pulse items-center h-full">
+    <div role="status" className="flex h-full animate-pulse items-center">
       <div className="flex h-full w-full items-center justify-center rounded bg-gray/20  sm:w-96">
         <svg
           className="h-10 w-10 text-gray "

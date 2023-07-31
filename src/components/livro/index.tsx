@@ -6,5 +6,4 @@ export const Livro = {
   Item: LivroItem,
 }
 
-
 export * from './livro-item'

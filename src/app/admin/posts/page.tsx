@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { FaPlus } from 'react-icons/fa'
 
-import ListPosts from '@/components/list-posts'
+import ListPosts from '@/components/admin/list-posts'
 
 export const metadata = {
   title: 'Listagem de posts | Admin',

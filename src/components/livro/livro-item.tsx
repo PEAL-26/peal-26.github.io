@@ -35,7 +35,7 @@ export default function LivroItem(props: Props) {
   return (
     <div className="flex w-full items-center gap-3 transition-all max-md:flex-col">
       <TippyCustom title={data.title} description={data.resume}>
-        <div className="relative h-64 w-40 cursor-pointer rounded-md border border-white/20 max-md:w-56 max-md:h-80">
+        <div className="relative h-64 w-40 cursor-pointer rounded-md border border-white/20 max-md:h-80 max-md:w-56">
           {isLoadingImage && !data.image && <ImageLoadingSkeleton />}
           {!isLoadingImage && data.image && (
             <Image
@@ -48,7 +48,7 @@ export default function LivroItem(props: Props) {
           )}
         </div>
       </TippyCustom>
-      <div className="flex flex-1 flex-col justify-between max-md:text-center w-full">
+      <div className="flex w-full flex-1 flex-col justify-between max-md:text-center">
         <div className="flex flex-col ">
           <span className="text-xl font-bold leading-normal">{data.title}</span>
           <span className="mt-1 text-sm font-normal leading-normal">{data.author}</span>
