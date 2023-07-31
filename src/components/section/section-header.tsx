@@ -10,7 +10,10 @@ export default function SectionHeader({ title, description, ...rest }: Props) {
   return (
     <h2
       {...rest}
-      className={twMerge('mb-6 flex flex-col text-xl font-bold leading-normal section-header', rest.className)}
+      className={twMerge(
+        'section-header mb-6 flex flex-col text-xl font-bold leading-normal',
+        rest.className,
+      )}
     >
       {title}
       {description && <span className="-mt-1 max-w-md text-[12px] font-light">{description}</span>}

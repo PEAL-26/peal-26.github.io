@@ -78,10 +78,7 @@ export default function FormularioFeedback() {
           />
         </div>
         <div className="flex items-center justify-between rounded-b-md border-t border-white/20 bg-black px-3 py-2">
-          <ReaccaoFeedback
-            reaccao={classification}
-            onReaccao={setClassification}
-          />
+          <ReaccaoFeedback reaccao={classification} onReaccao={setClassification} />
           <button
             type="submit"
             data-loading={isLoading}

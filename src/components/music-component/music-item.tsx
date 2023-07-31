@@ -13,7 +13,7 @@ export default function MusicItem(props: Props) {
   const { data, iconType } = props
 
   return (
-    <div className="ml-4 mb-4 inline-flex items-center justify-start gap-3 rounded-md bg-gray p-2">
+    <div className="mb-4 ml-4 inline-flex items-center justify-start gap-3 rounded-md bg-gray p-2">
       <div className="flex h-10 w-10 items-center justify-center rounded-md bg-white p-2">
         {iconType === 'mic' ? (
           <GiMicrophone className="text-black/60" size={24} />

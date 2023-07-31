@@ -57,7 +57,9 @@ export default function RegisterPost() {
         onChange={(e) => setPost({ ...post, title: e.target.value })}
         onBlur={verifySlug}
       />
-      <span data-error={existsSlug} className='data-'>{post?.slug}</span>
+      <span data-error={existsSlug} className="data-">
+        {post?.slug}
+      </span>
     </div>
   )
 }

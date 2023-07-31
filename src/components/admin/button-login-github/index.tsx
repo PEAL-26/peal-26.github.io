@@ -2,11 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import {
-  signInWithPopup,
-  GithubAuthProvider,
-  browserLocalPersistence,
-} from 'firebase/auth'
+import { signInWithPopup, GithubAuthProvider, browserLocalPersistence } from 'firebase/auth'
 
 import { AiFillGithub, AiOutlineLoading } from 'react-icons/ai'
 

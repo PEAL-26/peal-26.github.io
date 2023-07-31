@@ -36,7 +36,7 @@ export default function ReaccaoFeedback(props: Props) {
 
   useEffect(() => {
     handleChangeStateEmoji(true, reaccao)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reaccao])
 
   return (

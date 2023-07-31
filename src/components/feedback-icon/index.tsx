@@ -31,4 +31,3 @@ export default function FeedbackIcon({ className = 'h-10 w-10 fill-white' }: Pro
     </svg>
   )
 }
-

@@ -1,4 +1,3 @@
-import { CircleProgressBar } from '@/components/circle-progress-bar'
 import ListPostsHome from '@/components/list-posts-home'
 import LogoHome from '@/components/logo-home'
 
@@ -10,12 +9,11 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <div className="flex flex-1 flex-col my-7">
+    <div className="my-7 flex flex-1 flex-col">
       <div className="mb-7 flex flex-col items-center gap-3">
         <LogoHome />
         <span className="text-center text-3xl font-bold">Pedro Edilásio Araújo Lopes</span>
       </div>
-      <CircleProgressBar />
       <span className="mb-2 text-xl font-bold text-white">Últimos artigos</span>
       <ListPostsHome />
     </div>

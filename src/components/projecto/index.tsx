@@ -14,12 +14,7 @@ export default function Projecto({ data }: Props) {
       <div className="flex flex-col justify-start gap-2">
         <div className="relative h-28 w-28 rounded-full border-4 border-gray ">
           {data.image && (
-            <Image
-              src={data.image}
-              alt={data.name}
-              fill
-              className="rounded-full object-cover"
-            />
+            <Image src={data.image} alt={data.name} fill className="rounded-full object-cover" />
           )}
         </div>
 

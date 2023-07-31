@@ -6,5 +6,9 @@ import Register from '@/components/admin/register-post/indesx'
 // }
 
 export default async function PostRegisterAdminPage() {
-  return <div className="my-7 "><Register /></div>
+  return (
+    <div className="my-7 ">
+      <Register />
+    </div>
+  )
 }

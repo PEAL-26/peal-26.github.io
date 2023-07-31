@@ -41,7 +41,7 @@ export function FeedbackAdmin({ data }: PostAminProps) {
         onClick={openFeedbackModal}
         className="flex cursor-pointer items-center justify-between rounded-md border border-white/10 bg-black px-3 py-4 hover:bg-black/50"
       >
-        <div className='flex flex-1 gap-2'>
+        <div className="flex flex-1 gap-2">
           <ReaccaoEmoji emoji={getEmoji(data.classification)} activeState />
 
           <div className="flex flex-1 flex-col ">

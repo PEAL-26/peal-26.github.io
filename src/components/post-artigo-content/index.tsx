@@ -1,4 +1,4 @@
-import { PostProps } from "@/@types/post-type"
+import { PostProps } from '@/@types/post-type'
 
 interface Props {
   post: PostProps
