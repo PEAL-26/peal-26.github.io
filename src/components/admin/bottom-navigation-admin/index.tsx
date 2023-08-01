@@ -6,8 +6,9 @@ import Link from 'next/link'
 export default function BottomNavigationAdmin() {
   const pathname = usePathname()
 
-  const classNamesState = (url: string) => {
-    const state = pathname.startsWith(url) ? 'active' : 'inactive'
+  const classNamesState = (url: string, exact: boolean = false) => {
+    const isPath = exact ? pathname === url : pathname.startsWith(url)
+    const state = isPath ? 'active' : 'inactive'
 
     const stateButton = {
       active:
@@ -23,9 +24,12 @@ export default function BottomNavigationAdmin() {
     <div className="fixed bottom-0 left-0 z-40 w-full lg:p-0 lg:pl-[290px]">
       <div className="flex w-full justify-center">
         <div
-          className="mx-auto my-2 grid max-w-xs grid-cols-3 gap-1 rounded-lg border border-gray  bg-black p-2 shadow"
+          className="mx-auto my-2 grid max-w-xs grid-cols-4 gap-1 rounded-lg border border-gray  bg-black p-2 shadow"
           role="group"
         >
+          <Link href="/admin" className={classNamesState('/admin', true)}>
+            Dashboard
+          </Link>
           <Link href="/admin/posts" className={classNamesState('/admin/posts')}>
             Posts
           </Link>

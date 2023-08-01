@@ -1,10 +1,12 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import validator from 'validator'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { BiEdit, BiTrashAlt } from 'react-icons/bi'
 
-import { remove as RemoveFeedback } from '@/data/feedbacks'
+import { remove as RemoveProject, getById } from '@/data/projects'
+import { removeByUrl as removeFileByUrl } from '@/data/files'
 import { ProjectProps } from '@/@types/project-type'
 import { ProjectDeleteModal } from './project-delete-modal'
 
@@ -13,8 +15,11 @@ interface PostAminProps {
 }
 
 export function ProjectAdmin({ data }: PostAminProps) {
+  const { isEmpty } = validator
+
   const router = useRouter()
-  const url = `/admin/projectos/register?id=${data.id}&state=alter`
+
+  const url = `/admin/projectos/register?id=${data.id}`
   const [isLoading, setIsLoading] = useState(false)
   const [isOpenModal, setIsOpenModal] = useState(false)
 
@@ -25,8 +30,21 @@ export function ProjectAdmin({ data }: PostAminProps) {
     if (data.id) {
       try {
         setIsLoading(true)
+        const project = await getById(data.id)
 
-        await RemoveFeedback(data.id)
+        if (!project) {
+          // TODO Implementar depois
+          console.error('Projecto não encontrado')
+          return
+        }
+
+        if (project.image && !isEmpty(project.image)) {
+          await removeFileByUrl('projects', project.image)
+        }
+
+        await RemoveProject(data.id)
+
+        // TODO Implementar função para recarregar a página
         router.refresh()
         closeModal()
       } catch (error) {
@@ -47,15 +65,11 @@ export function ProjectAdmin({ data }: PostAminProps) {
       >
         {/* Content */}
         <div className="flex gap-2">
-          {data.image && (
-            <Image
-              src={data.image}
-              alt={data.name}
-              width={100}
-              height={100}
-              className="mb-4 rounded-full border-4 border-gray object-cover"
-            />
-          )}
+          <div className="relative mb-4 h-32 w-32 rounded-full border-4 border-gray">
+            {data.image && (
+              <Image src={data.image} alt={data.name} fill className="rounded-full object-cover" />
+            )}
+          </div>
           <div className="flex flex-col">
             <h3 className="mb-4 text-lg font-bold text-white">{data.name}</h3>
             <p className="line-clamp-3 font-normal text-white/75">{data.description}</p>

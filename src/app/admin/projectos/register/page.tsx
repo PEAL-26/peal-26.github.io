@@ -1,4 +1,4 @@
-import RegisterProject from '@/components/admin/register-project/indesx'
+import RegisterProject from '@/components/admin/register-project'
 
 // export const metadata = {
 //   title: 'Novo post | Admin',

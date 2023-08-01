@@ -1,10 +1,11 @@
 import '@/styles/globals.css'
+import { Metadata } from 'next'
 import { Roboto_Flex as RobotoFlex } from 'next/font/google'
 
-import Sidebar from '@/components/sidebar'
 import Footer from '@/components/footer'
+import Sidebar from '@/components/sidebar'
 import ButtonMenu from '@/components/button-menu'
-import { Metadata } from 'next'
+
 import Head from './head'
 
 const roboto = RobotoFlex({ subsets: ['latin'] })

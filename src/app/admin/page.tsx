@@ -1,5 +1,4 @@
-import Loading from '../loading'
 
 export default function Admin() {
-  return <Loading />
+  return <div className="my-7 ">Dashboard</div>
 }
