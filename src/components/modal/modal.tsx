@@ -15,11 +15,11 @@ export function Modal(props: ModalProps) {
 
     e.stopPropagation()
     onHide(false)
-    document.body.classList.remove('overflow-hidden')
   }
 
   useEffect(() => {
     if (isOpen) document.body.classList.add('overflow-hidden')
+    if (!isOpen) document.body.classList.remove('overflow-hidden')
   }, [isOpen])
 
   return (

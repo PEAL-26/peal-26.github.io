@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import diacritics from 'diacritics'
 
-import { uploadPost } from '@/data/upload'
+import { createFile } from '@/data/files'
 import NotFound from '@/components/not-found'
 import { PostProps } from '@/@types/post-type'
 import { getBySlug } from '@/data/posts'
@@ -20,7 +20,7 @@ export default function RegisterPost() {
     const content = 'qualquer coisa'
 
     try {
-      await uploadPost('qualquer-coisa', content)
+      await createFile({ fileName: 'qualquer-coisa', type: 'md', content, folder: 'posts' })
     } catch (error) {
       console.error('erro ao salvar o arquivo', error)
       alert('Ocorreu um erro ao salvar o arquivo.')

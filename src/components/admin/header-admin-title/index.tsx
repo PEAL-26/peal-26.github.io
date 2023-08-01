@@ -4,6 +4,7 @@ import { usePathname, useParams, useSearchParams } from 'next/navigation'
 import { redirect } from 'next/navigation'
 
 const TITLES = [
+  { name: 'Dashboard', href: '/admin' },
   { name: 'Listagem de posts', href: '/admin/posts' },
   { name: 'Novo posts', href: '/admin/posts/register' },
   { name: 'Listagem de projectos', href: '/admin/projectos' },
@@ -32,7 +33,7 @@ export default function HeaderAdminTitle() {
   const searchParams = useSearchParams()
   const id = searchParams.get('id')
 
-  if (pathname === '/admin') redirect('/admin/posts')
+  // if (pathname === '/admin') redirect('/admin/posts')
   let title = getTitle(pathname, id)
 
   return (

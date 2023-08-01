@@ -1,3 +1,4 @@
+// import admin, { ServiceAccount, cert } from 'firebase-admin/app'
 import { getAuth } from 'firebase/auth'
 import { initializeApp, getApps } from 'firebase/app'
 import { getAnalytics } from 'firebase/analytics'
@@ -6,6 +7,7 @@ import { initializeAppCheck, ReCaptchaEnterpriseProvider } from 'firebase/app-ch
 import { getStorage } from 'firebase/storage'
 
 import { firebaseConfig } from '@/config/firebase-config'
+// import serviceAccount from '@/credentials/firebase-service-account-key.json'
 
 // Initialize Firebase
 const verifyApp = () => {
@@ -28,3 +30,16 @@ export const appCheck = () =>
     provider: new ReCaptchaEnterpriseProvider(firebaseConfig.keySiteReCAPTCHAEnterprise),
     isTokenAutoRefreshEnabled: true,
   })
+
+// TODO Implementar posterior
+export function getAdminApp() {
+  // console.log(serviceAccount)
+  // const adminApps = admin.getApps()
+
+  // if (adminApps.length) return adminApps[0]
+
+  // return admin.initializeApp({
+  //   credential: cert(serviceAccount as ServiceAccount),
+  //   storageBucket: firebaseConfig.storageBucket,
+  // })
+}
