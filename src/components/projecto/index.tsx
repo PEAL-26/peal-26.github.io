@@ -14,7 +14,12 @@ export default function Projecto({ data }: Props) {
       <div className="flex flex-col justify-start gap-2">
         <div className="relative h-28 w-28 rounded-full border-4 border-gray ">
           {data.image && (
-            <Image src={data.image} alt={data.name} fill className="rounded-full object-cover" />
+            <Image
+              src={data.image}
+              alt={data.name}
+              fill
+              className="rounded-full object-contain"
+            />
           )}
         </div>
 
@@ -25,7 +30,8 @@ export default function Projecto({ data }: Props) {
       </div>
 
       <Link
-        href="#"
+        href={data.link || ''}
+        target="_blank"
         className="inline-flex items-center gap-2 text-sm font-medium text-white transition-all focus:z-10  focus:outline-none group-hover:text-primary "
       >
         Saber mais <BsArrowRightShort size={20} />

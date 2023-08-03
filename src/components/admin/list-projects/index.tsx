@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 import Empty from '@/components/empty'
 import Loading from '@/components/loading'
@@ -7,30 +7,36 @@ import { ProjectProps } from '@/@types/project-type'
 import { getAll } from '@/data/projects'
 import { ProjectAdmin } from './project'
 import { ErrorPage } from '@/components/error-page'
+import { useAppContext } from '@/contexts/app-context'
 
 export default function ListProjectsAdmin() {
+  const { isLoadingPage, stopLoadingPage } = useAppContext()
+
   const [isError, setIsError] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
+  // const [isLoading, setIsLoading] = useState(true)
   const [projects, setProjects] = useState<ProjectProps[]>([])
 
-  const getProjects = async () => {
+  const getProjects = useCallback(async () => {
     try {
-      setIsLoading(true)
+      // setIsLoading(true)
       const response = await getAll()
       setProjects(response)
     } catch (error) {
       console.error(error)
       setIsError(true)
     } finally {
-      setIsLoading(false)
+      // setIsLoading(false)
+      stopLoadingPage()
     }
-  }
+  }, [stopLoadingPage])
 
   useEffect(() => {
-    getProjects()
-  }, [])
+    if (isLoadingPage) {
+      getProjects()
+    }
+  }, [getProjects, isLoadingPage])
 
-  if (isLoading) return <Loading />
+  if (isLoadingPage) return <Loading />
   if (isError) return <ErrorPage />
   if (projects.length === 0) return <Empty margin="mb-7" />
 

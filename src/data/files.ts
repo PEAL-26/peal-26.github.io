@@ -30,7 +30,7 @@ export async function createFile(input: CreateFileMdProps): Promise<void> {
 
   try {
     const postsRef = ref(storage(), `${folder}/${fileName}.${type}`)
-    await uploadString(postsRef, content)
+    const result = await uploadString(postsRef, content)
   } catch (error) {
     throw new Error('Erro: não foi possível fazer o upload.')
   }
