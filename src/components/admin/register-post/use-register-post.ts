@@ -18,37 +18,63 @@ export function useRegisterPost() {
   const { isEmpty } = validator
   const searchParams = useSearchParams()
 
-  const [post, setPost] = useState<DataInput | null>(null)
+  const [post, setPost] = useState<Partial<DataInput> | null>(null)
   const [isLoadingVerifySlug, setIsLoadingVerifySlug] = useState(false)
   const [waitSaving, setWhiteSaving] = useState(false)
   const [isResuming, setIsResuming] = useState(false)
+  const [errors, setErrors] = useState<string[]>([])
+
+  const addValuesToProperty = (input: Partial<DataInput>) => {
+    const { title, slug, resume, content } = input
+
+    setPost((prevPost) => {
+      const updatedPost = { ...prevPost }
+
+      if (title) updatedPost.title = title
+      if (slug) updatedPost.slug = slug
+      if (resume) updatedPost.resume = resume
+      if (content) updatedPost.content = content
+
+      return updatedPost
+    })
+  }
+
+  const validatePost = () => {
+    if (!post) return false
+    const { title, slug, content } = post
+
+    if (!title || isEmpty(title)) setErrors([...errors, 'Titulo vazio.'])
+    if (!slug || isEmpty(slug)) setErrors([...errors, 'Slug não gerado.'])
+    if (!content || isEmpty(content)) setErrors([...errors, 'Conteúdo vazio.'])
+
+    return errors.length === 0
+  }
 
   const saveFile = async () => {
-    if (!post || waitSaving || isLoadingVerifySlug) return
+    if (!post || !validatePost() || waitSaving || isLoadingVerifySlug) return
     setWhiteSaving(true)
 
     try {
-      console.log(post)
+      const { title, slug, resume, content } = post
 
-      // const fileOption = {
-      //   content: post.content,
-      //   fileName: post.slug || self.crypto.randomUUID(),
-      //   type: 'md',
-      //   folder: 'posts',
-      // }
+      const fileOption = {
+        content: content || '',
+        fileName: slug || self.crypto.randomUUID(),
+        type: 'md',
+        folder: 'posts',
+      }
+      await createFile(fileOption)
 
-      // const inputPost = {
-      //   title: post.title,
-      //   slug: post.slug,
-      //   resume: post.resume,
-      //   file: `${fileOption.fileName}.${fileOption.type}`,
-      // }
-
-      // await createFile(fileOption)
-      // await insertPost(inputPost)
+      const inputPost = {
+        title: title || '',
+        slug,
+        resume,
+        file: `${fileOption.fileName}.${fileOption.type}`,
+      }
+      await insertPost(inputPost)
     } catch (error) {
-      console.error('erro ao salvar o arquivo', error)
-      alert('Ocorreu um erro ao salvar o arquivo.')
+      console.error('Ocorreu um erro ao salvar o arquivo.', error)
+      setErrors([...errors, 'Ocorreu um erro ao salvar o arquivo.'])
     } finally {
       setWhiteSaving(false)
     }
@@ -75,7 +101,6 @@ export function useRegisterPost() {
       }
     }
 
-    // const finalSlug = count === 0 ? slug : `${slug}-${count}`
     setPost({ ...post, slug: finalSlug })
     setIsLoadingVerifySlug(false)
   }
@@ -83,6 +108,8 @@ export function useRegisterPost() {
   const resumeContent = async () => {
     if (!post || waitSaving || isResuming) return
     // Usar inteligência artificial para resumir o conteúdo
+
+    setIsResuming(true)
   }
 
   useEffect(() => {
@@ -92,14 +119,17 @@ export function useRegisterPost() {
 
   return {
     post,
-    isLoadingVerifySlug,
-    setIsLoadingVerifySlug,
+    errors,
+    isResuming,
     waitSaving,
-    setWhiteSaving,
+    isLoadingVerifySlug,
+
+    setPost,
     saveFile,
     verifySlug,
-    setPost,
-    isResuming,
     resumeContent,
+    setWhiteSaving,
+    addValuesToProperty,
+    setIsLoadingVerifySlug,
   }
 }

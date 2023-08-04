@@ -16,7 +16,6 @@ import {
 import validator from 'validator'
 import { db } from '@/libs/firebase'
 import { FeedbackProps } from '@/@types/feedback-type'
-import { dateToFirebaseTimestamp, firebaseTimestampToDate } from '@/helpers/date-converter'
 
 const { isEmpty } = validator
 
@@ -33,8 +32,8 @@ export async function getAll(): Promise<FeedbackProps[]> {
       id: doc.id,
       message,
       classification,
-      created_at: firebaseTimestampToDate(created_at),
-      deleted_at: firebaseTimestampToDate(deleted_at),
+      created_at: created_at.toDate(),
+      deleted_at: deleted_at && deleted_at.toDate(),
     })
   })
 

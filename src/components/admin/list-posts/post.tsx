@@ -49,7 +49,7 @@ export function PostAdmin({ data }: PostAminProps) {
         {/* Content */}
         <div className="flex flex-1 flex-col ">
           <time className="mb-1 text-xs font-normal leading-none text-neutral-500">
-            {data.date?.toDateString()}
+            {data.created_at.toDateString()}
           </time>
           <h3 className="mb-4 text-lg font-bold text-white">{data.title}</h3>
 
