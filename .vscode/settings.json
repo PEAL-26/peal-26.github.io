@@ -18,6 +18,7 @@
         "Scrollspy",
         "signup",
         "Swiper",
-        "tippyjs"
+        "tippyjs",
+        "tiptap"
     ]
 }

@@ -1,49 +1,50 @@
-import { BubbleMenu, Editor } from "@tiptap/react";
+import { BubbleMenu, Editor } from '@tiptap/react'
+
+import { LuHeading1, LuHeading2 } from 'react-icons/lu'
+import { GrStrikeThrough } from 'react-icons/gr'
+import { BiBold, BiItalic } from 'react-icons/bi'
+import { RiCodeSSlashLine } from 'react-icons/ri'
 
 // import { setLink } from "@helpers/set-link";
-import Icon from "./icon";
 
 type Props = {
-  editor: Editor;
-};
+  editor: Editor
+}
 
 export default function Popover({ editor }: Props) {
-  const isSelectionOverLink = editor.getAttributes("link").href;
+  const isSelectionOverLink = editor.getAttributes('link').href
 
   return (
-    <BubbleMenu className="bg-primary text-white rounded-md p-1 -m-1 flex flex-row gap-1 " editor={editor}>
-      <Icon
-        name="Bold"
-        onClick={() => editor.chain().focus().toggleBold().run()}
-      />
-      <Icon
-        name="Italic"
-        onClick={() => editor.chain().focus().toggleItalic().run()}
-      />
-      <Icon
+    <BubbleMenu
+      className="-m-1 flex flex-row gap-1 rounded-md border border-gray bg-black p-1 text-white "
+      editor={editor}
+    >
+      <BiBold name="Bold" onClick={() => editor.chain().focus().toggleBold().run()} />
+      <BiItalic name="Italic" onClick={() => editor.chain().focus().toggleItalic().run()} />
+      <GrStrikeThrough
         name="Strikethrough"
         onClick={() => editor.chain().focus().toggleStrike().run()}
       />
-      <Icon
+      <LuHeading1
         name="H1"
         onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
       />
-      <Icon
+      <LuHeading2
         name="H2"
         onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
       />
-      <Icon
-        name={`${isSelectionOverLink ? "LinkUnlink" : "Link"}`}
+      {/* <Icon
+        name={`${isSelectionOverLink ? 'LinkUnlink' : 'Link'}`}
         // onClick={() =>
         //   // isSelectionOverLink
         //   //   ? editor.chain().focus().unsetLink().run()
         //   //   : setLink(editor)
         // }
-      />
-      <Icon
+      /> */}
+      <RiCodeSSlashLine
         name="CodeSSlashLine"
         onClick={() => editor.chain().focus().toggleCode().run()}
       />
     </BubbleMenu>
-  );
+  )
 }

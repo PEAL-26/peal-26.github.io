@@ -1,92 +1,35 @@
 'use client'
-import diacritics from 'diacritics'
-import { useEffect, useState } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { BsStars } from 'react-icons/bs'
 import { AiOutlineLoading } from 'react-icons/ai'
 
 import { TipTap } from '@/components/tip-tap'
-import { PostProps } from '@/@types/post-type'
-
-import { getBySlug, insert as insertPost } from '@/data/posts'
-import { createFile } from '@/data/files'
-
-import validator from 'validator'
-const { isEmpty } = validator
+import { useRegisterPost } from './use-register-post'
 
 export default function RegisterPost() {
-  const searchParams = useSearchParams()
-  const [post, setPost] = useState<PostProps | null>(null)
-  const [content, setContent] = useState('')
-  const [isLoadingVerifySlug, setIsLoadingVerifySlug] = useState(false)
-  const [whiteSaving, setWhiteSaving] = useState(false)
+  const {
+    post,
+    waitSaving,
+    isResuming,
+    isLoadingVerifySlug,
 
-  const saveFile = async () => {
-    if (!post || whiteSaving) return
-    setWhiteSaving(true)
-
-    try {
-      const options = {
-        fileName: post.slug || self.crypto.randomUUID(),
-        type: 'md',
-        content,
-        folder: 'posts',
-      }
-
-      await createFile(options)
-      await insertPost({
-        ...post,
-        file: `${options.fileName}.${options.type}`,
-      })
-    } catch (error) {
-      console.error('erro ao salvar o arquivo', error)
-      alert('Ocorreu um erro ao salvar o arquivo.')
-    } finally {
-      setWhiteSaving(false)
-    }
-  }
-
-  const verifySlug = async () => {
-    if (!post?.title || isEmpty(post.title)) return
-
-    setIsLoadingVerifySlug(true)
-    const title = diacritics.remove(post.title.toLowerCase().trim())
-    const slug = title.replace(/[^a-zA-Z0-9]+/g, '-')
-
-    let count = 0
-    let verify = true
-    let finalSlug = ''
-
-    while (verify) {
-      finalSlug = count === 0 ? slug : `${slug}-${count}`
-      const existingPost = await getBySlug(finalSlug)
-      count++
-
-      if (!existingPost) {
-        verify = false
-      }
-    }
-
-    // const finalSlug = count === 0 ? slug : `${slug}-${count}`
-    setPost({ ...post, slug: finalSlug })
-    setIsLoadingVerifySlug(false)
-  }
-
-  useEffect(() => {
-    const id = searchParams.get('id')
-    if (!id) setPost(null)
-  }, [searchParams])
+    setPost,
+    saveFile,
+    verifySlug,
+    resumeContent,
+  } = useRegisterPost()
 
   return (
-    <div className="flex h-screen w-full gap-2">
-      <div className="flex flex-col">
-        <div className="mb-2 flex flex-col gap-1">
+    <div className="flex min-h-screen flex-1 gap-4">
+      <div className="flex w-full flex-col gap-3">
+        <div className="flex flex-col gap-1">
           <input
             type="text"
             name="title"
             value={post?.title}
-            onChange={(e) => setPost({ ...post, title: e.target.value })}
+            // onChange={(e) => setPost({ ...post, title: e.target.value })}
             onBlur={verifySlug}
-            className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-black focus:border-primary focus:ring-primary"
+            className="block w-full rounded-lg border border-transparent bg-gray-50 p-2.5 text-sm text-black focus:border-transparent focus:ring-0"
+            placeholder="Titulo"
           />
           <span className="flex items-center gap-1">
             {post?.slug}
@@ -98,23 +41,66 @@ export default function RegisterPost() {
           </span>
         </div>
 
-        <TipTap content={content} onChangeContent={setContent} />
+        <TipTap
+          content={post?.content || ''}
+          onChangeContent={(content) => {
+            post && setPost({ ...post, content })
+          }}
+        />
+
+        <div className="flex flex-col gap-1">
+          <button
+            type="button"
+            onClick={resumeContent}
+            data-wait={isResuming}
+            disabled={isResuming}
+            className="flex items-center justify-center gap-1 rounded-md border border-primary px-3 py-2 text-center text-white data-[wait=true]:cursor-wait"
+          >
+            <AiOutlineLoading
+              size={20}
+              data-show={isResuming}
+              className="animate-spin fill-white text-white data-[show=false]:hidden"
+            />
+            Resumir
+            <BsStars
+              size={20}
+              data-wait={isResuming}
+              className="fill-primary text-primary data-[wait=true]:animate-bounce"
+            />
+          </button>
+          <textarea
+            rows={5}
+            name="resume"
+            disabled={isResuming}
+            data-wait={isResuming}
+            placeholder="Resumo do conteudo"
+            className="block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-black focus:border-transparent focus:ring-0 data-[wait=true]:cursor-wait"
+            onChange={(e) => {
+              post && setPost({ ...post, resume: e.target.value })
+            }}
+          >
+            {post?.resume}
+          </textarea>
+        </div>
       </div>
-      <div className="w-[10%]">
-        <button
-          type="button"
-          onClick={saveFile}
-          data-saving={whiteSaving}
-          disabled={whiteSaving}
-          className="flex items-center justify-center gap-1 rounded-md bg-primary px-3 py-2 text-center text-white data-[saving=true]:cursor-wait"
-        >
-          Guardar
-          <AiOutlineLoading
-            size={16}
-            data-show={whiteSaving}
-            className="animate-spin fill-white text-white data-[show=false]:hidden"
-          />
-        </button>
+      <div className="flex w-[20%] flex-col">
+        <div className="w-full">
+          <button
+            type="button"
+            onClick={saveFile}
+            data-saving={waitSaving}
+            disabled={waitSaving}
+            className="flex items-center justify-center gap-1 rounded-md bg-primary px-3 py-2 text-center text-white data-[saving=true]:cursor-wait w-full"
+          >
+            Guardar
+            <AiOutlineLoading
+              size={16}
+              data-show={waitSaving}
+              className="animate-spin fill-white text-white data-[show=false]:hidden"
+            />
+          </button>
+        </div>
+        <div className="flex-1">alguma outra informação relacionada ao POST</div>
       </div>
     </div>
   )
