@@ -25,7 +25,7 @@ export default async function PostDetails({ params }: Props) {
   return (
     <div>
       <time className="mb-1 text-sm font-normal leading-none text-neutral-500">
-        {post?.date?.toString()}
+        {/* {post?.created_at?.toString()} */}
       </time>
       <Header backButton title={post?.title} />
     </div>

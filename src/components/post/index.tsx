@@ -15,7 +15,7 @@ export default function Post({ data }: Props) {
     <PostContainer url={link}>
       <div>
         <time className="mb-1 text-xs font-normal leading-none text-neutral-500">
-          {data.date?.toDateString() ?? ''}
+          {data.created_at.toDateString() ?? ''}
         </time>
         <h3 className="mb-2 text-lg font-bold text-white">{data.title}</h3>
         <p className="mb-4 line-clamp-6 font-normal text-white/75">{data.resume}</p>

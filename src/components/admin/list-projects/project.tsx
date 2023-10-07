@@ -2,13 +2,14 @@ import Link from 'next/link'
 import Image from 'next/image'
 import validator from 'validator'
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 import { BiEdit, BiTrashAlt } from 'react-icons/bi'
 
 import { remove as RemoveProject, getById } from '@/data/projects'
 import { removeByUrl as removeFileByUrl } from '@/data/files'
 import { ProjectProps } from '@/@types/project-type'
 import { ProjectDeleteModal } from './project-delete-modal'
+import { useAppContext } from '@/contexts/app-context'
 
 interface PostAminProps {
   data: ProjectProps
@@ -18,6 +19,9 @@ export function ProjectAdmin({ data }: PostAminProps) {
   const { isEmpty } = validator
 
   const router = useRouter()
+  const pathname = usePathname()
+
+  const { loadingPage } = useAppContext()
 
   const url = `/admin/projectos/register?id=${data.id}`
   const [isLoading, setIsLoading] = useState(false)
@@ -44,9 +48,8 @@ export function ProjectAdmin({ data }: PostAminProps) {
 
         await RemoveProject(data.id)
 
-        // TODO Implementar função para recarregar a página
-        router.refresh()
         closeModal()
+        loadingPage()
       } catch (error) {
         console.error(error)
       } finally {
@@ -64,13 +67,20 @@ export function ProjectAdmin({ data }: PostAminProps) {
         className="flex cursor-pointer items-center justify-between rounded-md border border-white/10 bg-black px-3 py-4 hover:bg-black/50"
       >
         {/* Content */}
-        <div className="flex gap-2">
-          <div className="relative mb-4 h-32 w-32 rounded-full border-4 border-gray">
-            {data.image && (
-              <Image src={data.image} alt={data.name} fill className="rounded-full object-cover" />
-            )}
+        <div className="flex w-full gap-2">
+          <div>
+            <div className="relative h-28 w-28 rounded-full border-4 border-gray">
+              {data.image && (
+                <Image
+                  src={data.image}
+                  alt={data.name}
+                  fill
+                  className="rounded-full object-cover"
+                />
+              )}
+            </div>
           </div>
-          <div className="flex flex-col">
+          <div className="flex w-full flex-col">
             <h3 className="mb-4 text-lg font-bold text-white">{data.name}</h3>
             <p className="line-clamp-3 font-normal text-white/75">{data.description}</p>
           </div>

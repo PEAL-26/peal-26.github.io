@@ -1,5 +1,5 @@
 import validator from 'validator'
-import { deleteObject, ref, uploadString } from 'firebase/storage'
+import { deleteObject, ref, uploadString, getDownloadURL, getBlob } from 'firebase/storage'
 
 import { storage } from '@/libs/firebase'
 
@@ -21,7 +21,26 @@ function isValidInput(input: CreateFileMdProps): boolean {
   )
 }
 
-export async function createFile(input: CreateFileMdProps): Promise<void> {
+export async function getContentFileByFilename(folder: string, fileName: string): Promise<string> {
+  const fileRef = ref(storage(), `${folder}/${fileName}`)
+  const blob = await getBlob(fileRef)
+  return blob.text()
+}
+
+export async function getContentFileByDownloadUrl(url: string) {
+  const response = await fetch(url, {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    },
+  })
+  const htmlString = await response.text()
+
+  return htmlString
+}
+
+export async function createFile(input: CreateFileMdProps): Promise<string> {
   if (!isValidInput(input)) {
     throw new Error('Erro: todas as propriedades devem ser fornecidas.')
   }
@@ -30,7 +49,10 @@ export async function createFile(input: CreateFileMdProps): Promise<void> {
 
   try {
     const postsRef = ref(storage(), `${folder}/${fileName}.${type}`)
-    await uploadString(postsRef, content)
+    const result = await uploadString(postsRef, content)
+    const downloadURL = await getDownloadURL(result.ref)
+
+    return downloadURL
   } catch (error) {
     throw new Error('Erro: não foi possível fazer o upload.')
   }

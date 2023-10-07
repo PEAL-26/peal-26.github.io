@@ -3,6 +3,7 @@ export type PostProps = {
   title: string
   slug?: string
   resume?: string
-  date?: Date
   file?: string
+  created_at: Date
+  updated_at?: Date
 }
