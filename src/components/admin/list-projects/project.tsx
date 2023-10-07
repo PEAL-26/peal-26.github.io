@@ -68,10 +68,17 @@ export function ProjectAdmin({ data }: PostAminProps) {
       >
         {/* Content */}
         <div className="flex w-full gap-2">
-          <div className="relative h-28 w-28 rounded-full border-4 border-gray">
-            {data.image && (
-              <Image src={data.image} alt={data.name} fill className="rounded-full object-cover" />
-            )}
+          <div>
+            <div className="relative h-28 w-28 rounded-full border-4 border-gray">
+              {data.image && (
+                <Image
+                  src={data.image}
+                  alt={data.name}
+                  fill
+                  className="rounded-full object-cover"
+                />
+              )}
+            </div>
           </div>
           <div className="flex w-full flex-col">
             <h3 className="mb-4 text-lg font-bold text-white">{data.name}</h3>

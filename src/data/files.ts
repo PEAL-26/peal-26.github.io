@@ -1,13 +1,5 @@
 import validator from 'validator'
-import {
-  deleteObject,
-  ref,
-  uploadString,
-  getDownloadURL,
-  getBlob,
-  getBytes,
-  getStream,
-} from 'firebase/storage'
+import { deleteObject, ref, uploadString, getDownloadURL, getBlob } from 'firebase/storage'
 
 import { storage } from '@/libs/firebase'
 
