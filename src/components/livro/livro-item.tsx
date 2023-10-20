@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 import ImageLoadingSkeleton from '../image-loading-skeleton'
 import Image from 'next/image'
-import { TippyCustom } from '@/helpers/tippy-custom'
+import { TippyCustom } from '@/libs/tippy-custom'
 
 export type LivroItemType = {
   title: string
