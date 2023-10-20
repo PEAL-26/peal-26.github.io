@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 
 import { CartazItemType } from './types'
 import ImageLoadingSkeleton from '../image-loading-skeleton'
-import { TippyCustom } from '@/helpers/tippy-custom'
+import { TippyCustom } from '@/libs/tippy-custom'
 
 interface CartazItemProps {
   data: CartazItemType

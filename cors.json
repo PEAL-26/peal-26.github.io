@@ -1,6 +1,6 @@
 [
   {
-    "origin": ["http://localhost:3000/", "http://peal-26.github.io/"],
+    "origin": ["http://localhost:3000/", "https://peal-26.github.io/"],
     "method": ["GET"],
     "maxAgeSeconds": 3600
   }
