@@ -84,8 +84,8 @@ export function useRegisterPost() {
     if (!post?.title || isEmpty(post.title)) return
 
     setIsLoadingVerifySlug(true)
-    const title = diacritics.remove(post.title.toLowerCase().trim())
-    const slug = title.replace(/[^a-zA-Z0-9]+/g, '-')
+    const title = diacritics.remove(post.title.toLowerCase().trim()).trim()
+    const slug = title.replace(/[^a-zA-Z0-9]+/g, '-').replace(/^[-]*(.*?)[-]*$/, '$1')
 
     let count = 0
     let verify = true
