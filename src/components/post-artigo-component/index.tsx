@@ -8,6 +8,7 @@ import { getContentFileByFilename } from '@/data/files'
 
 import Header from '../header'
 import Loading from '../loading'
+import { formatarData } from '@/helpers/date-converter'
 
 export default function PostArtigoComponent() {
   const searchParams = useSearchParams()
@@ -56,7 +57,7 @@ export default function PostArtigoComponent() {
     post && (
       <>
         <time className="mb-1 text-sm font-normal leading-none text-neutral-500">
-          {post?.created_at?.toString()}
+          {formatarData(post.created_at)}
         </time>
         <Header backButton title={post?.title} />
         <div dangerouslySetInnerHTML={{ __html: htmlContent }} />

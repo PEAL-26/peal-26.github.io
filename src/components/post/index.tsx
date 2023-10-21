@@ -3,6 +3,7 @@ import { BsArrowRightShort } from 'react-icons/bs'
 
 import { PostProps } from '@/@types/post-type'
 import { PostContainer } from './post-container'
+import { formatarData } from '@/helpers/date-converter'
 
 interface Props {
   data: PostProps
@@ -15,7 +16,7 @@ export default function Post({ data }: Props) {
     <PostContainer url={link}>
       <div>
         <time className="mb-1 text-xs font-normal leading-none text-neutral-500">
-          {data.created_at.toDateString() ?? ''}
+          {formatarData(data.created_at)}
         </time>
         <h3 className="mb-2 text-lg font-bold text-white">{data.title}</h3>
         <p className="mb-4 line-clamp-6 font-normal text-white/75">{data.resume}</p>
