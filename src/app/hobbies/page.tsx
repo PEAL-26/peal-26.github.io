@@ -1,5 +1,5 @@
 import Header from '@/components/header'
-import HobbiesComponent from '@/components/hobbies-component'
+import HobbiesComponent from '@/components/templates/hobbies-component'
 
 export const metadata = {
   title: 'Hobbies',

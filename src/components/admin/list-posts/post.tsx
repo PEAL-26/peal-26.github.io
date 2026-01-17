@@ -5,7 +5,7 @@ import { AiOutlineLoading } from 'react-icons/ai'
 import { BiEdit, BiTrashAlt, BiShareAlt } from 'react-icons/bi'
 
 import { PostProps } from '@/@types/post-type'
-import { remove as RemovePost } from '@/data/posts'
+import { remove as RemovePost } from '@/hooks/use-services/functions/posts'
 import Modal, { Body as ModalBody, Footer as ModalFooter } from '@/components/modal'
 import { ErrorPage } from '@/components/error-page'
 

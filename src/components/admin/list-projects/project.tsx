@@ -5,11 +5,11 @@ import { useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import { BiEdit, BiTrashAlt } from 'react-icons/bi'
 
-import { remove as RemoveProject, getById } from '@/data/projects'
-import { removeByUrl as removeFileByUrl } from '@/data/files'
+import { remove as RemoveProject, getById } from '@/hooks/use-services/functions/projects'
+import { removeByUrl as removeFileByUrl } from '@/hooks/use-services/functions/files'
 import { ProjectProps } from '@/@types/project-type'
 import { ProjectDeleteModal } from './project-delete-modal'
-import { useAppContext } from '@/contexts/app-context'
+import { useAppContext } from '@/contexts/app'
 
 interface PostAminProps {
   data: ProjectProps

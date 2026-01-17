@@ -1,5 +1,5 @@
-import { Section } from '../section'
-import { Livro, LivroItemType } from '../livro'
+import { Section } from '../../section'
+import { Livro, LivroItemType } from '../../livro'
 
 import { hobbiesData } from './data'
 

@@ -1,5 +1,5 @@
-import { Section } from '../section'
-import { Music, MusicItemDataType } from '../music-component'
+import { Section } from '../../section'
+import { Music, MusicItemDataType } from '../../music-component'
 
 import { hobbiesData } from './data'
 import useChangeSectionTab from '@/hooks/use-change-section-tab'

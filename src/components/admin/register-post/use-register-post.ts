@@ -4,8 +4,8 @@ import diacritics from 'diacritics'
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 
-import { createFile } from '@/data/files'
-import { getBySlug, insert as insertPost } from '@/data/posts'
+import { createFile } from '@/hooks/use-services/functions/files'
+import { getBySlug, insert as insertPost } from '@/hooks/use-services/functions/posts'
 
 interface DataInput {
   title: string

@@ -1,5 +1,5 @@
 import Header from '@/components/header'
-import ListPostsTimeline from '@/components/list-posts-timeline'
+import ListPostsTimeline from '@/components/templates/list-posts-timeline'
 
 export const metadata = {
   title: 'Posts',

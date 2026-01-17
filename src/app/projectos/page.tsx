@@ -1,5 +1,5 @@
 import Header from '@/components/header'
-import ListProjects from '@/components/list-projects'
+import ListProjects from '@/components/templates/list-projects'
 
 export const metadata = {
   title: 'Projectos',

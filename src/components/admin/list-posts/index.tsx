@@ -1,6 +1,6 @@
 'use client'
 import { PostProps } from '@/@types/post-type'
-import { getAll } from '@/data/posts'
+import { getAll } from '@/hooks/use-services/functions/posts'
 import { useEffect, useState } from 'react'
 import { PostAdmin } from './post'
 import Loading from '@/components/loading'

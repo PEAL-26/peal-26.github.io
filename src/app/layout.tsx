@@ -8,6 +8,7 @@ import Sidebar from '@/components/sidebar'
 import ButtonMenu from '@/components/button-menu'
 
 import Head from './head'
+import { LoadingProvider } from '@/providers/loading'
 
 const roboto = RobotoFlex({ subsets: ['latin'] })
 
@@ -23,14 +24,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="pt-pt">
       <Head />
       <body className={`${roboto.className} flex flex-1 sm:relative`}>
-        <Sidebar />
-        <div className="ml-0 flex-1 p-7 transition-all lg:ml-[290px]">
-          <ButtonMenu />
-          <div className="flex min-h-screen flex-1 flex-col">
-            <Providers>{children}</Providers>
+        <LoadingProvider>
+          <Sidebar />
+          <div className="ml-0 flex-1 p-7 transition-all lg:ml-[290px]">
+            <ButtonMenu />
+            <div className="flex min-h-screen flex-1 flex-col">
+              <Providers>{children}</Providers>
+            </div>
+            <Footer />
           </div>
-          <Footer />
-        </div>
+        </LoadingProvider>
       </body>
     </html>
   )

@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 
-import Loading from '../loading'
+import Loading from '../../loading'
 import { SectionLivros } from './section-livros'
 import { SectionAnimes } from './section-animes'
 import { SectionMusicas } from './section-musicas'

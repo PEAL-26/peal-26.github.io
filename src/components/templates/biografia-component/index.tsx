@@ -1,16 +1,16 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Scrollspy } from '@makotot/ghostui'
 
-import Subtitle from '../subtitle'
-import ScrollspyMenu from '../scrollspy-menu'
+import Subtitle from '../../subtitle'
+import ScrollspyMenu from '../../scrollspy-menu'
 
 import useSticked from '@/hooks/use-sticked'
 
 import { CAPITULOS } from './data'
 import { setListRefs } from '@/helpers/refs'
-import Loading from '../loading'
+import Loading from '../../loading'
 
 const PRIMEIRO_ELEMENTO = 0
 

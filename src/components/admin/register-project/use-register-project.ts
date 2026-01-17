@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 
-import { insert, update } from '@/data/projects'
+import { insert, update } from '@/hooks/use-services/functions/projects'
 import { useFileUpload } from '@/hooks/use-file-upload'
 
 import { InputsForm } from './form'

@@ -1,5 +1,5 @@
 import Header from '@/components/header'
-import BiografiaComponent from '@/components/biografia-component'
+import BiografiaComponent from '@/components/templates/biografia-component'
 import ScrollToTopButton from '@/components/scroll-to-top-button'
 
 export const metadata = {

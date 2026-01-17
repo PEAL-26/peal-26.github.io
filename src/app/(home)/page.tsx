@@ -1,4 +1,4 @@
-import ListPostsHome from '@/components/list-posts-home'
+import ListPostsHome from '@/components/templates/list-posts-home'
 import LogoHome from '@/components/logo-home'
 
 export const metadata = {

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { remove as RemovePost } from '@/data/feedbacks'
+import { remove as RemovePost } from '@/hooks/use-services/functions/feedbacks'
 
 export default function useFeedback() {
   const router = useRouter()

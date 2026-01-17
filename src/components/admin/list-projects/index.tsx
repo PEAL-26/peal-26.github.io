@@ -4,10 +4,10 @@ import { useCallback, useEffect, useState } from 'react'
 import Empty from '@/components/empty'
 import Loading from '@/components/loading'
 import { ProjectProps } from '@/@types/project-type'
-import { getAll } from '@/data/projects'
+import { getAll } from '@/hooks/use-services/functions/projects'
 import { ProjectAdmin } from './project'
 import { ErrorPage } from '@/components/error-page'
-import { useAppContext } from '@/contexts/app-context'
+import { useAppContext } from '@/contexts/app'
 
 export default function ListProjectsAdmin() {
   const { isLoadingPage, stopLoadingPage } = useAppContext()

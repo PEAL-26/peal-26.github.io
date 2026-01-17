@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import Empty from '@/components/empty'
 import Loading from '@/components/loading'
 import { FeedbackProps } from '@/@types/feedback-type'
-import { getAll } from '@/data/feedbacks'
+import { getAll } from '@/hooks/use-services/functions/feedbacks'
 import { FeedbackAdmin } from './feedback'
 
 export default function ListFeedbacksAdmin() {

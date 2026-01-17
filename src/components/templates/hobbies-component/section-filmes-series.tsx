@@ -1,33 +1,33 @@
-import { Cartaz } from '../cartaz'
-import { Section } from '../section'
-import { CartazItemType } from '../cartaz/types'
+import { Cartaz } from '../../cartaz'
+import { Section } from '../../section'
+import { CartazItemType } from '../../cartaz/types'
 
 import { hobbiesData } from './data'
 import useChangeSectionTab from '@/hooks/use-change-section-tab'
 
-export function SectionAnimes() {
+export function SectionFilmesSeries() {
   const { tabActual, setTabActual } = useChangeSectionTab()
 
   return (
     <Section.Root autoSize tab={tabActual}>
-      <Section.Header title="Animes e Bonecos" description="Explorando o mundo dos animes" />
+      <Section.Header title="Filmes e Séries" />
       <Section.Content>
         <Section.TabBar
-          tabs={['Animes', 'Bonecos']}
+          tabs={['Filmes', 'Séries']}
           classContent="relative"
           onChangeTab={setTabActual}
         >
-          {/* Animes */}
+          {/* Filmes */}
           <Cartaz.Container visible={tabActual === 0}>
-            {hobbiesData.animes.map((anime: CartazItemType, index: number) => (
-              <Cartaz.Item key={index} data={anime} />
+            {hobbiesData.filmes.map((filme: CartazItemType, index: number) => (
+              <Cartaz.Item key={index} data={filme} />
             ))}
           </Cartaz.Container>
 
-          {/* Bonecos */}
+          {/* Séries */}
           <Cartaz.Container visible={tabActual === 1}>
-            {hobbiesData.bonecos.map((boneco: CartazItemType, index: number) => (
-              <Cartaz.Item key={index} data={boneco} />
+            {hobbiesData.series.map((serie: CartazItemType, index: number) => (
+              <Cartaz.Item key={index} data={serie} />
             ))}
           </Cartaz.Container>
         </Section.TabBar>

@@ -1,18 +1,16 @@
-import PostArtigoComponent from '@/components/post-artigo-component'
+import PostArtigoComponent from '@/components/templates/post-artigo-component'
 import { Metadata } from 'next'
-
-import { getBySlug } from '@/data/posts'
 
 type Props = {
   searchParams: { s: string | undefined }
 }
 
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
-  const post = await getBySlug(searchParams.s || '')
+  // const post = await getBySlug(searchParams.s || '')
 
   return {
-    title: post?.title,
-    description: post?.resume,
+    title: '',
+    description: '',
   }
 }
 

@@ -1,4 +1,4 @@
-import { CartazItemType } from '../cartaz/types'
+import { CartazItemType } from '../../cartaz/types'
 
 interface Hobby {
   [key: string]: any

@@ -7,6 +7,34 @@ import { useRouter, usePathname } from 'next/navigation'
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from 'react-icons/fa'
 import { AiFillInstagram } from 'react-icons/ai'
 import { FiGithub } from 'react-icons/fi'
+import { appConfig } from '@/config/app-config'
+
+const SOCIAL_MEDIAS = [
+  { name: 'facebook', url: appConfig.facebookUrl, icon: <FaFacebookF /> },
+  { name: 'instagram', url: appConfig.instagramUrl, icon: <AiFillInstagram /> },
+  { name: 'twitter', url: appConfig.twitterUrl, icon: <FaTwitter /> },
+  { name: 'linkedin', url: appConfig.linkedinUrl, icon: <FaLinkedinIn /> },
+  { name: 'github', url: appConfig.githubUrl, icon: <FiGithub /> },
+]
+
+const MENUS = [
+  {
+    title: 'Biografia',
+    href: '/biografia',
+  },
+  {
+    title: 'Projectos',
+    href: '/projectos',
+  },
+  {
+    title: 'Posts',
+    href: '/posts',
+  },
+  {
+    title: 'Hobbies',
+    href: '/hobbies',
+  },
+]
 
 export default function Sidebar() {
   const router = useRouter()
@@ -31,8 +59,8 @@ export default function Sidebar() {
       <div className="flex flex-col items-center gap-3">
         <Link href="/">
           <Image
-            src="/peal-logo.png"
-            alt="user"
+            src={appConfig.logoUrl}
+            alt="peal-logo"
             width={100}
             height={100}
             className="click-element cursor-pointer rounded-full"
@@ -45,77 +73,31 @@ export default function Sidebar() {
 
       {/* Redes Sociais */}
       <div className="mt-3 flex gap-5">
-        <Link
-          className="click-element flex h-8 w-8 items-center justify-center rounded-full border transition-all hover:border-primary hover:bg-primary hover:text-white"
-          href="https://facebook.com/peal26"
-          target="_blank"
-        >
-          <FaFacebookF />
-        </Link>
-        <Link
-          className="click-element flex h-8 w-8 items-center justify-center rounded-full border transition-all hover:border-primary hover:bg-primary hover:text-white"
-          href="https://instagram.com/peal_26"
-          target="_blank"
-        >
-          <AiFillInstagram />
-        </Link>
-        <Link
-          className="click-element flex h-8 w-8 items-center justify-center rounded-full border transition-all hover:border-primary hover:bg-primary hover:text-white"
-          href="https://twitter.com/peal_26"
-          target="_blank"
-        >
-          <FaTwitter />
-        </Link>
-        <Link
-          className="click-element flex h-8 w-8 items-center justify-center rounded-full border transition-all hover:border-primary hover:bg-primary hover:text-white"
-          href="https://linkedin.com/in/peal26"
-          target="_blank"
-        >
-          <FaLinkedinIn />
-        </Link>
-        <Link
-          className="click-element flex h-8 w-8 items-center justify-center rounded-full border transition-all hover:border-primary hover:bg-primary hover:text-white"
-          href="https://github.com/peal-26"
-          target="_blank"
-        >
-          <FiGithub className="fill-current" />
-        </Link>
+        {SOCIAL_MEDIAS.map((social, index) => (
+          <Link
+            key={index}
+            className="click-element flex h-8 w-8 items-center justify-center rounded-full border transition-all hover:border-primary hover:bg-primary hover:text-white"
+            href={social.url}
+            target="_blank"
+          >
+            {social.icon}
+          </Link>
+        ))}
       </div>
 
       {/* Menus Links */}
       <ul className="mt-8 w-full overflow-y-auto">
-        <li
-          className={`click-element cursor-pointer rounded-md px-3 py-4 text-xl ${isActiveLink(
-            '/biografia',
-          )}`}
-          onClick={() => handleLinkClick('/biografia')}
-        >
-          <Link href="/biografia">Biografia</Link>
-        </li>
-        <li
-          className={`click-element cursor-pointer rounded-md px-3 py-4 text-xl ${isActiveLink(
-            '/projectos',
-          )}`}
-          onClick={() => handleLinkClick('/projectos')}
-        >
-          <Link href="/projectos">Projectos</Link>
-        </li>
-        <li
-          className={`click-element cursor-pointer rounded-md px-3 py-4 text-xl ${isActiveLink(
-            '/posts',
-          )}`}
-          onClick={() => handleLinkClick('/posts')}
-        >
-          <Link href="/posts">Posts</Link>
-        </li>
-        <li
-          className={`click-element cursor-pointer rounded-md px-3 py-4 text-xl ${isActiveLink(
-            '/hobbies',
-          )}`}
-          onClick={() => handleLinkClick('/hobbies')}
-        >
-          <Link href="/hobbies">Hobbies</Link>
-        </li>
+        {MENUS.map((menu, index) => (
+          <li
+            key={index}
+            className={`click-element cursor-pointer rounded-md px-3 py-4 text-xl ${isActiveLink(
+              menu.href,
+            )}`}
+            onClick={() => handleLinkClick(menu.href)}
+          >
+            <Link href={menu.href}>{menu.title}</Link>
+          </li>
+        ))}
       </ul>
     </div>
   )

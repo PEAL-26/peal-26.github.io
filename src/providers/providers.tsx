@@ -1,6 +1,13 @@
 import { ReactNode } from 'react'
-import { AppProvider } from '@/contexts/app-context'
+import { AppProvider } from '@/contexts/app'
+import { FirebaseProvider } from '@/contexts/firebase'
+import { firebaseConfig } from '@/config/firebase-config'
+import { LoadingProvider } from './loading'
 
 export function Providers({ children }: { children: ReactNode }) {
-  return <AppProvider>{children}</AppProvider>
+  return (
+    <FirebaseProvider config={firebaseConfig}>
+      <AppProvider>{children}</AppProvider>
+    </FirebaseProvider>
+  )
 }
